@@ -2,12 +2,9 @@
   "name": "a-button",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "start": "ng serve --port 3945 --open",
+    "build": "ng build --prod",
+    "firebase_deploy": "ng build --prod && firebase deploy"
   },
   "private": true,
   "dependencies": {
