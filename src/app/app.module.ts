@@ -16,10 +16,14 @@ import {
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {firebase} from '../environments/firebase';
+import { GrisComponent } from './gris/gris.component';
+import { AComponent } from './a/a.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GrisComponent,
+    AComponent
   ],
   imports: [
     BrowserModule,
