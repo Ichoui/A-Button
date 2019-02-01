@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {NocifsService} from '../providers/nocifs.service';
 import {AngularFirestore} from 'angularfire2/firestore';
-import {Remarques} from '../providers/nocifs';
+import {Cons} from '../providers/nocifs';
 
 @Component({
   selector: 'app-gris',
@@ -13,13 +13,9 @@ import {Remarques} from '../providers/nocifs';
 export class ConsComponent implements OnInit {
 
   incrementer;
-  relou: Remarques;
-  time;
+  relou: Cons;
   docRef = this.db.collection('cons').doc('actualCons');
 
-  // updateTimestamp = this.docRef.update({
-  //   timestamp: firebase.firestore.FieldValue.serverTimestamp()
-  // });
 
   public listRelou: Observable<any[]>;
 

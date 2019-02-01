@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {NocifsService} from '../providers/nocifs.service';
 import {AngularFirestore} from 'angularfire2/firestore';
-import {Cons} from '../providers/nocifs';
-import * as firebase from 'firebase';
+import {Remarques} from '../providers/nocifs';
+import {arrayify} from 'tslint/lib/utils';
+import {DatesService} from '../providers/dates.service';
 
 @Component({
   selector: 'app-a',
@@ -13,45 +14,56 @@ import * as firebase from 'firebase';
 export class RemarquesComponent implements OnInit {
 
   incrementer;
-  relou: Cons;
+  remarques: Remarques;
   docRef = this.db.collection('remarques').doc('actualRemarques');
-  todayClicks;
+  daily;
+  monthly;
+  yearly;
 
-
-  public listRelou: Observable<any[]>;
-
-  constructor(public db: AngularFirestore, public nocifsService: NocifsService) {
-    this.listRelou = db.collection('/remarques').valueChanges();
-
+  constructor(public db: AngularFirestore, public nocifsService: NocifsService, public datesService: DatesService) {
+    // Observable qui consomme le nocif service approprié et l'endroit à la vue
     this.nocifsService.getRemarques().subscribe(i => {
-      this.relou = i;
-      this.incrementer = this.relou.number;
+      this.remarques = i;
+      this.incrementer = this.remarques.number;
     });
 
   }
 
   ngOnInit() {
-    this.nocifsService.todayClick('dataRemarques');
-    const a =this.nocifsService.getDate();
-    const b = this.nocifsService.arrayDate();
-    console.log(a)
-    console.log(b)
+    this.datesService.daily('dataRemarques');
+    this.datesService.monthly('dataRemarques');
+    this.datesService.yearly('dataRemarques');
+    const dateIllisible =this.datesService.getDate();
+    const dateArray = this.datesService.arrayDate();
+    const dateLisible = this.datesService.dateLisible();
+    // console.log(dateArray);
+    console.log(dateLisible)
   }
 
   clickRelou() {
     let addOne = this.incrementer + 1;
 
+    // Ajouter dans les data tracks
     this.db.collection('dataRemarques').add({
       number: addOne,
-      time: this.nocifsService.getDate()
+      date: this.datesService.getDate(),
+      dateLisible: this.datesService.dateLisible(),
+      day: this.datesService.dayDate(),
+      month: this.datesService.monthDate(),
+      year: this.datesService.yearDate()
     });
 
+    // Mettre à jour le dernier à jour cliqué
     this.docRef.set({
       number: addOne,
-      time: this.nocifsService.getDate()
+      date: this.datesService.getDate(),
+      dateLisible: this.datesService.dateLisible(),
+      day: this.datesService.dayDate(),
+      month: this.datesService.monthDate(),
+      year: this.datesService.yearDate()
     });
-    console.log(this.incrementer);
   }
+
   errorButton() {
     let removeOne = this.incrementer - 1;
     if (removeOne < 0) {
@@ -59,9 +71,11 @@ export class RemarquesComponent implements OnInit {
     }
     this.docRef.set({
       number: removeOne,
-      time: this.nocifsService.getDate()
+      date: this.datesService.getDate(),
+      dateLisible: this.datesService.dateLisible(),
+      day: this.datesService.dayDate(),
+      month: this.datesService.monthDate(),
+      year: this.datesService.yearDate()
     });
-
-    console.log(this.incrementer);
   }
 }

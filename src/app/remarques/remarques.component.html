@@ -2,6 +2,8 @@ Remarques
 <button class="button" (click)="clickRelou()">BigButton</button>
 <button class="button" (click)="errorButton()">ErrorButton</button>
 <div>{{ incrementer }}</div>
-<div>Nombre de clic aujourd'hui : </div>
+<div>Nombre de clic aujourd'hui : {{ daily }}</div>
+<div>Nombre de clic mois : {{ monthly}}</div>
+<div>Nombre de clic annuels : {{ yearly }} </div>
 
 <div class="switch" [routerLink]="['/cons']">Switch</div>

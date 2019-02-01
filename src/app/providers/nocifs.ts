@@ -1,10 +1,18 @@
 export interface Cons {
   number: number ;
-  time: string;
+  date: string;
+  dateLisible: string;
+  day: string;
+  month: string;
+  year: string;
 }
 
 export interface Remarques {
   number: number ;
-  time: string;
+  date: string;
+  dateLisible: string;
+  day: string;
+  month: string;
+  year: string;
 }
 
