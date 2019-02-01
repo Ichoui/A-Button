@@ -17,6 +17,4 @@ export class RelouService {
     this.relouCollec = this.db.collection('relou').doc('actualRelou');
     return this.relou$ = this.relouCollec.valueChanges();
   }
-
-
 }

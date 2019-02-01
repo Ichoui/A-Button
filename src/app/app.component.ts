@@ -52,6 +52,12 @@ export class AppComponent implements OnInit {
 
   clickRelou() {
     let addOne = this.incrementer + 1;
+
+    this.db.collection("dataRelou").add({
+      number: addOne,
+      time: "aze"
+    });
+
     this.docRef.set({
       number: addOne,
       time: 'aze'
@@ -60,7 +66,6 @@ export class AppComponent implements OnInit {
   }
 
   errorButton() {
-
     let removeOne = this.incrementer - 1;
     if (removeOne < 0) {
       removeOne = 0;
