@@ -1,21 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {GrisComponent} from './gris/gris.component';
-import {AComponent} from './a/a.component';
+import {ConsComponent} from './cons/cons.component';
+import {RemarquesComponent} from './remarques/remarques.component';
+import {LayoutComponent} from './layout/layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/a',
-    pathMatch: 'full'
-  },
-  {
-    path:'gris',
-    component: GrisComponent
-  },
-  {
-    path:'a',
-    component: AComponent
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/cons',
+        pathMatch: 'full'
+      },
+      {
+        path: 'cons',
+        component: ConsComponent
+      },
+      {
+        path: 'remarques',
+        component: RemarquesComponent
+      }
+    ]
   }
 ];
 

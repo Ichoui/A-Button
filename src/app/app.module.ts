@@ -16,14 +16,18 @@ import {
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {firebase} from '../environments/firebase';
-import { GrisComponent } from './gris/gris.component';
-import { AComponent } from './a/a.component';
+import { ConsComponent } from './cons/cons.component';
+import { RemarquesComponent } from './remarques/remarques.component';
+import { ConpersoComponent } from './conperso/conperso.component';
+import { LayoutComponent } from './layout/layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GrisComponent,
-    AComponent
+    ConsComponent,
+    RemarquesComponent,
+    ConpersoComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

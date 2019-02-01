@@ -2,54 +2,56 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {NocifsService} from '../providers/nocifs.service';
 import {AngularFirestore} from 'angularfire2/firestore';
-import {Gris} from '../providers/nocifs';
+import {Cons} from '../providers/nocifs';
+import * as firebase from 'firebase';
 
 @Component({
-  selector: 'app-gris',
-  templateUrl: './gris.component.html',
-  styleUrls: ['./gris.component.scss']
+  selector: 'app-a',
+  templateUrl: './remarques.component.html',
+  styleUrls: ['./remarques.component.scss']
 })
-
-export class GrisComponent implements OnInit {
+export class RemarquesComponent implements OnInit {
 
   incrementer;
-  relou: Gris;
-  time;
-  docRef = this.db.collection('gris').doc('actualGris');
+  relou: Cons;
+  docRef = this.db.collection('remarques').doc('actualRemarques');
+  todayClicks;
 
-  // updateTimestamp = this.docRef.update({
-  //   timestamp: firebase.firestore.FieldValue.serverTimestamp()
-  // });
 
   public listRelou: Observable<any[]>;
 
   constructor(public db: AngularFirestore, public nocifsService: NocifsService) {
-    this.listRelou = db.collection('/gris').valueChanges();
+    this.listRelou = db.collection('/remarques').valueChanges();
 
-    this.nocifsService.getGris().subscribe(i => {
+    this.nocifsService.getRemarques().subscribe(i => {
       this.relou = i;
       this.incrementer = this.relou.number;
     });
+
   }
 
   ngOnInit() {
+    this.nocifsService.todayClick('dataRemarques');
+    const a =this.nocifsService.getDate();
+    const b = this.nocifsService.arrayDate();
+    console.log(a)
+    console.log(b)
   }
 
   clickRelou() {
     let addOne = this.incrementer + 1;
 
-    this.db.collection('dataGris').add({
+    this.db.collection('dataRemarques').add({
       number: addOne,
-      time: 'aze'
+      time: this.nocifsService.getDate()
     });
 
     this.docRef.set({
       number: addOne,
-      time: 'aze'
+      time: this.nocifsService.getDate()
     });
     console.log(this.incrementer);
   }
-
   errorButton() {
     let removeOne = this.incrementer - 1;
     if (removeOne < 0) {
@@ -57,10 +59,9 @@ export class GrisComponent implements OnInit {
     }
     this.docRef.set({
       number: removeOne,
-      time: 'aze'
+      time: this.nocifsService.getDate()
     });
 
     console.log(this.incrementer);
   }
-
 }

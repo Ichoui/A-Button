@@ -2,19 +2,20 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {NocifsService} from '../providers/nocifs.service';
 import {AngularFirestore} from 'angularfire2/firestore';
-import {A} from '../providers/nocifs';
-import * as firebase from 'firebase';
+import {Remarques} from '../providers/nocifs';
 
 @Component({
-  selector: 'app-a',
-  templateUrl: './a.component.html',
-  styleUrls: ['./a.component.scss']
+  selector: 'app-gris',
+  templateUrl: './cons.component.html',
+  styleUrls: ['./cons.component.scss']
 })
-export class AComponent implements OnInit {
+
+export class ConsComponent implements OnInit {
 
   incrementer;
-  relou: A;
-  docRef = this.db.collection('relou').doc('actualRelou');
+  relou: Remarques;
+  time;
+  docRef = this.db.collection('cons').doc('actualCons');
 
   // updateTimestamp = this.docRef.update({
   //   timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -23,30 +24,28 @@ export class AComponent implements OnInit {
   public listRelou: Observable<any[]>;
 
   constructor(public db: AngularFirestore, public nocifsService: NocifsService) {
-    this.listRelou = db.collection('/relou').valueChanges();
+    this.listRelou = db.collection('/cons').valueChanges();
 
-    this.nocifsService.getRelou().subscribe(i => {
+    this.nocifsService.getCons().subscribe(i => {
       this.relou = i;
       this.incrementer = this.relou.number;
     });
-
   }
 
   ngOnInit() {
-    const a =this.nocifsService.getDate();
   }
 
   clickRelou() {
     let addOne = this.incrementer + 1;
 
-    this.db.collection('dataRelou').add({
+    this.db.collection('dataCons').add({
       number: addOne,
-      time: this.nocifsService.getDate()
+      time: 'aze'
     });
 
     this.docRef.set({
       number: addOne,
-      time: this.nocifsService.getDate()
+      time: 'aze'
     });
     console.log(this.incrementer);
   }
@@ -58,9 +57,10 @@ export class AComponent implements OnInit {
     }
     this.docRef.set({
       number: removeOne,
-      time: this.nocifsService.getDate()
+      time: 'aze'
     });
 
     console.log(this.incrementer);
   }
+
 }
