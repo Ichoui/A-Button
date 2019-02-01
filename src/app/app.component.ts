@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import * as firebase from 'firebase';
-import firestore from 'firebase/firestore';
-import {firesettings } from '../environments/firebase';
-const settings = {timestampsInSnapshots: true};
+import {Observable} from 'rxjs';
+import {AngularFirestore} from 'angularfire2/firestore';
 
 
 @Component({
@@ -14,9 +12,13 @@ export class AppComponent implements OnInit {
 
   relouIncrement;
 
+  public listRelou: Observable<any[]>;
+
+  constructor(db: AngularFirestore) {
+    this.listRelou = db.collection('/relou').valueChanges();
+  }
+
   ngOnInit() {
-    firebase.initializeApp(firesettings);
-    firebase.firestore().settings(settings);
   }
 
   clickRelou() {

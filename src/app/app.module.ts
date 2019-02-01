@@ -3,6 +3,9 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+
+import {AngularFirestoreModule} from 'angularfire2/firestore';
+import {AngularFireModule} from 'angularfire2';
 import {
   MatButtonModule,
   MatCardModule, MatFormFieldModule,
@@ -11,7 +14,8 @@ import {
   MatPaginatorModule,
   MatProgressSpinnerModule, MatSortModule, MatTableModule
 } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {firebase} from '../environments/firebase';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(firebase),
+    AngularFirestoreModule,
+
     MatInputModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,

@@ -1,3 +1,8 @@
 <router-outlet></router-outlet>
 
 <button class="button" (click)="clickRelou()">BigButton</button>
+<ul>
+  <li *ngFor="let item of listRelou | async">
+    <pre>{{ item | json }}</pre>
+  </li>
+</ul>
