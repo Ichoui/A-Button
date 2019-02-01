@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {NocifsService} from '../providers/nocifs.service';
 import {AngularFirestore} from 'angularfire2/firestore';
-import {Cons} from '../providers/nocifs';
+import {Nocifs} from '../providers/nocifs';
 
 @Component({
   selector: 'app-gris',
@@ -13,7 +13,7 @@ import {Cons} from '../providers/nocifs';
 export class ConsComponent implements OnInit {
 
   incrementer;
-  relou: Cons;
+  relou: Nocifs;
   docRef = this.db.collection('cons').doc('actualCons');
 
 

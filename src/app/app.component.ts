@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {AngularFirestore} from 'angularfire2/firestore';
 import {NocifsService} from './providers/nocifs.service';
-import {Cons} from './providers/nocifs';
+import {Nocifs} from './providers/nocifs';
 
 
 @Component({

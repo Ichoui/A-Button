@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore} from 'angularfire2/firestore';
-import {NocifsService} from './nocifs.service';
 import * as firebase from 'firebase';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -51,50 +50,56 @@ export class DatesService {
     return d[2];
   }
 
-
-  // tempo
+  // Compte le nombre de document dans la collection passée en paramètres pour les jours / mois / annnées
   daily(collection) {
     const today = this.arrayDate();
-
+    let counter = 0;
     const db = firebase.firestore();
     const docRef = db.collection(collection);
-    console.log(today);
-    docRef.where('day', '==', today[0])
+    // console.log(today);
+   return docRef.where('day', '==', today[0])
       .get()
       .then(function (querySnap) {
         querySnap.forEach(function (doc) {
-          console.log('Same day => ', doc.data());
+          counter += 1;
+          // console.log('Same day => ', doc.data());
         });
+        return counter;
       });
   }
 
   monthly(collection) {
     const month = this.arrayDate();
+    let counter = 0;
 
     const db = firebase.firestore();
     const docRef = db.collection(collection);
-    console.log(month);
-    docRef.where('month', '==', month[1])
+    return docRef.where('month', '==', month[1])
       .get()
       .then(function (querySnap) {
         querySnap.forEach(function (doc) {
-          console.log('Same month => ', doc.data());
+          counter += 1;
+          // console.log('Same month => ', doc.data());
         });
+        return counter;
+
       });
   }
 
   yearly(collection) {
     const year = this.arrayDate();
+    let counter = 0;
 
     const db = firebase.firestore();
     const docRef = db.collection(collection);
-    console.log(year);
-    docRef.where('year', '==', year[2])
+    return docRef.where('year', '==', year[2])
       .get()
       .then(function (querySnap) {
         querySnap.forEach(function (doc) {
-          console.log('Same year => ', doc.data());
+          counter += 1;
+          // console.log('Same year => ', doc.data());
         });
+        return counter;
       });
   }
 }

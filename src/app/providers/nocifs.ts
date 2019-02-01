@@ -1,4 +1,4 @@
-export interface Cons {
+export interface Nocifs {
   number: number ;
   date: string;
   dateLisible: string;
@@ -6,13 +6,3 @@ export interface Cons {
   month: string;
   year: string;
 }
-
-export interface Remarques {
-  number: number ;
-  date: string;
-  dateLisible: string;
-  day: string;
-  month: string;
-  year: string;
-}
-
