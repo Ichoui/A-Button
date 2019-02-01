@@ -20,6 +20,7 @@ import { ConsComponent } from './cons/cons.component';
 import { RemarquesComponent } from './remarques/remarques.component';
 import { ConpersoComponent } from './conperso/conperso.component';
 import { LayoutComponent } from './layout/layout.component';
+import { ButtonsComponent } from './buttons/buttons.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LayoutComponent } from './layout/layout.component';
     ConsComponent,
     RemarquesComponent,
     ConpersoComponent,
-    LayoutComponent
+    LayoutComponent,
+    ButtonsComponent
   ],
   imports: [
     BrowserModule,

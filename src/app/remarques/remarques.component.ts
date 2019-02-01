@@ -5,7 +5,7 @@ import { DatesService } from '../providers/dates.service';
 import * as firebase from 'firebase';
 
 @Component({
-  selector: 'app-a',
+  selector: 'app-remarques',
   templateUrl: './remarques.component.html',
   styleUrls: ['./remarques.component.scss']
 })
@@ -119,8 +119,5 @@ export class RemarquesComponent implements OnInit {
       })
     });
     this.counters();
-
-
-    // TODO : Remove dans dataRemarques quand on fait -1 au compteur pour équilibrer
   }
 }

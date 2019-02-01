@@ -13,10 +13,16 @@ export class NocifsService {
   remarquesCollec: AngularFirestoreDocument<Nocifs>;
   remarques$;
 
-  remarkCountCollec: AngularFirestoreDocument;
+  countCollec: AngularFirestoreDocument;
   remarkDay$;
   remarkMonth$;
   remarkYear$;
+
+  consDay$;
+  consMonth$;
+  consYear$;
+
+
 
 
 
@@ -27,18 +33,18 @@ export class NocifsService {
   }
 
   getRemarkDay() {
-    this.remarkCountCollec = this.db.collection('counters').doc('remarquesDay');
-    return this.remarkDay$ = this.remarkCountCollec.valueChanges();
+    this.countCollec = this.db.collection('counters').doc('remarquesDay');
+    return this.remarkDay$ = this.countCollec.valueChanges();
   }
 
   getRemarkMonth() {
-    this.remarkCountCollec = this.db.collection('counters').doc('remarquesMonth');
-    return this.remarkMonth$ = this.remarkCountCollec.valueChanges();
+    this.countCollec = this.db.collection('counters').doc('remarquesMonth');
+    return this.remarkMonth$ = this.countCollec.valueChanges();
   }
 
   getRemarkYear() {
-    this.remarkCountCollec = this.db.collection('counters').doc('remarquesYear');
-    return this.remarkYear$ = this.remarkCountCollec.valueChanges();
+    this.countCollec = this.db.collection('counters').doc('remarquesYear');
+    return this.remarkYear$ = this.countCollec.valueChanges();
   }
 
 
@@ -50,6 +56,21 @@ export class NocifsService {
   getCons() {
     this.consCollec = this.db.collection('cons').doc('actualCons');
     return this.cons$ = this.consCollec.valueChanges();
+  }
+
+  getConsDay() {
+    this.countCollec = this.db.collection('counters').doc('consDay');
+    return this.consDay$ = this.countCollec.valueChanges();
+  }
+
+  getConsMonth() {
+    this.countCollec = this.db.collection('counters').doc('consMonth');
+    return this.consMonth$ = this.countCollec.valueChanges();
+  }
+
+  getConsYear() {
+    this.countCollec = this.db.collection('counters').doc('consYear');
+    return this.consYear$ = this.countCollec.valueChanges();
   }
 
 }
