@@ -4,10 +4,14 @@
 
 <!--<router-outlet></router-outlet>-->
 
-<app-cons></app-cons>
-<hr>
-<hr>
-<hr>
 <app-remarques></app-remarques>
+<hr>
+<hr>
+<app-switch (switchEmitter)="emitter($event)"></app-switch>
+<hr>
+<hr>
+<app-cons *ngIf="switch === true"></app-cons>
+<app-conperso *ngIf="switch === false"></app-conperso>
+
 
 <app-buttons></app-buttons>

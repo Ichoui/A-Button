@@ -16,16 +16,12 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/cons',
+        redirectTo: '/remarques-de-cons',
         pathMatch: 'full'
       },
       {
-        path: 'cons',
-        component: ConsComponent
-      },
-      {
-        path: 'remarques',
-        component: RemarquesComponent
+        path: 'remarques-de-cons',
+        component: LayoutComponent
       }
     ]
   }

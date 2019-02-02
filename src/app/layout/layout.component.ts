@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  // Provient du component Switch
+  switch: boolean = true;
+
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  emitter($event) {
+    this.switch = $event;
   }
 
 }
