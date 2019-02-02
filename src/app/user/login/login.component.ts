@@ -10,7 +10,6 @@ import { User } from '../providers/user';
 })
 export class LoginComponent implements OnInit {
 
-
   user: User;
   constructor(public authService: AuthService) { }
 
@@ -19,7 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginGoogle() {
-    this.authService.loginGoogle()
+    this.authService.loginGoogle();
   }
 
 }

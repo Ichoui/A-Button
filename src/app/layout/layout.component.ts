@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../user/providers/auth.service';
+import { User } from '../user/providers/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -9,15 +12,22 @@ export class LayoutComponent implements OnInit {
 
   // Provient du component Switch
   switch: boolean = true;
+  user: User;
 
-  constructor() {
+  constructor(public authService: AuthService, public router: Router) {
   }
 
   ngOnInit() {
+    this.authService.user$.subscribe(user => this.user = user);
   }
 
   emitter($event) {
     this.switch = $event;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
 }
