@@ -20,7 +20,9 @@ import { ConsComponent } from './cons/cons.component';
 import { RemarquesComponent } from './remarques/remarques.component';
 import { ConpersoComponent } from './conperso/conperso.component';
 import { LayoutComponent } from './layout/layout.component';
-import { ButtonsComponent } from './buttons/buttons.component';
+import { ButtonsComponent } from './elements/buttons/buttons.component';
+import { LoginComponent } from './user/login/login.component';
+import { SwitchComponent } from './elements/switch/switch.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ButtonsComponent } from './buttons/buttons.component';
     RemarquesComponent,
     ConpersoComponent,
     LayoutComponent,
-    ButtonsComponent
+    ButtonsComponent,
+    LoginComponent,
+    SwitchComponent
   ],
   imports: [
     BrowserModule,

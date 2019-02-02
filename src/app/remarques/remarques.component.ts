@@ -101,6 +101,16 @@ export class RemarquesComponent implements OnInit {
     if (removeOne < 0) {
       removeOne = 0;
     }
+    const db = firebase.firestore();
+    const docRef = db.collection('dataRemarques');
+    console.log(removeOne);
+    docRef.where('number', '==', removeOne + 1).get().then(querySnap => {
+      querySnap.forEach(e => {
+        docRef.doc(e.id).delete().then();
+        this.counters();
+      });
+    });
+    // update les compteurs visuellement
     // Remove un au compteur général et met à jour la data principale
     this.docRef.set({
       number: removeOne,
@@ -110,14 +120,5 @@ export class RemarquesComponent implements OnInit {
       month: this.datesService.monthDate(),
       year: this.datesService.yearDate()
     });
-
-    const db = firebase.firestore();
-    const docRef = db.collection('dataRemarques');
-    docRef.where("number", "==", removeOne).get().then(querySnap => {
-      querySnap.forEach(e => {
-        docRef.doc(e.id).delete();
-      })
-    });
-    this.counters();
   }
 }

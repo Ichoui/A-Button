@@ -55,26 +55,26 @@ export class ConsComponent implements OnInit {
   counters() {
     this.datesService.daily('dataCons').then(async (data) => {
       this.docCountDay.set({
-        remarkDay: data
+        consDay: data
       });
     });
 
     this.datesService.monthly('dataCons').then(async (data) => {
       this.docCountMonth.set({
-        remarkMonth: data
+        consMonth: data
       });
     });
 
     this.datesService.yearly('dataCons').then(async (data) => {
       this.docCountYear.set({
-        remarkYear: data
+        consYear: data
       });
     });
   }
 
   clickRelou() {
     const addOne = this.incrementer + 1;
-
+    console.log(addOne);
     // Ajouter dans les data tracks
     this.db.collection('dataCons').add({
       number: addOne,
@@ -94,6 +94,8 @@ export class ConsComponent implements OnInit {
       month: this.datesService.monthDate(),
       year: this.datesService.yearDate()
     });
+
+    // update les compteurs visuellement
     this.counters();
 
   }
@@ -103,6 +105,16 @@ export class ConsComponent implements OnInit {
     if (removeOne < 0) {
       removeOne = 0;
     }
+    const db = firebase.firestore();
+    const docRef = db.collection('dataCons');
+    console.log(removeOne);
+    docRef.where('number', '==', removeOne + 1).get().then(querySnap => {
+      querySnap.forEach(e => {
+        docRef.doc(e.id).delete().then();
+        this.counters();
+      });
+    });
+    // update les compteurs visuellement
     // Remove un au compteur général et met à jour la data principale
     this.docRef.set({
       number: removeOne,
@@ -112,15 +124,6 @@ export class ConsComponent implements OnInit {
       month: this.datesService.monthDate(),
       year: this.datesService.yearDate()
     });
-
-    const db = firebase.firestore();
-    const docRef = db.collection('dataCons');
-    docRef.where('number', '==', removeOne).get().then(querySnap => {
-      querySnap.forEach(e => {
-        docRef.doc(e.id).delete();
-      });
-    });
-    this.counters();
   }
 
 }
