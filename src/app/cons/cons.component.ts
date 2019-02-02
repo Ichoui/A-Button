@@ -21,7 +21,7 @@ export class ConsComponent implements OnInit {
   docCountYear = this.db.collection('counters').doc('consYear');
   consDay;
   consMonth;
-  consYear;
+  consYear; // unused for now
 
 
   constructor(public db: AngularFirestore, public nocifsService: NocifsService, public datesService: DatesService) {
@@ -72,7 +72,7 @@ export class ConsComponent implements OnInit {
     });
   }
 
-  clickRelou() {
+  clickCons() {
     const addOne = this.incrementer + 1;
     console.log(addOne);
     // Ajouter dans les data tracks
@@ -100,7 +100,7 @@ export class ConsComponent implements OnInit {
 
   }
 
-  errorButton() {
+  errorCons() {
     let removeOne = this.incrementer - 1;
     if (removeOne < 0) {
       removeOne = 0;
