@@ -116,12 +116,27 @@ export class ConpersoComponent implements OnInit {
     }
     const db = firebase.firestore();
     const docRef = db.collection('dataRemarques');
+    const docUser = db.collection('dataRemarquesCons');
     console.log(removeOne);
 
-    docRef.where('number', '==', removeOne + 1).limit(1).get().then(querySnap => {
+    // On supprime de dataRemarques 1 log
+    docRef
+      .where('number', '==', removeOne + 1).limit(1).get().then(querySnap => {
       querySnap.forEach(e => {
         docRef.doc(e.id).delete().then();
     // update les compteurs visuellement
+        this.counters();
+      });
+    });
+
+    // On supprime de dataRemarquesCons 1 log
+    docUser
+      .where('user_id', '==', this.fireUser.displayName)
+      .where('number', '==', removeOne + 1).limit(1).get().then(querySnap => {
+      querySnap.forEach(e => {
+        docRef.doc(e.id).delete().then();
+        console.log(e.data());
+        // update les compteurs visuellement
         this.counters();
       });
     });
