@@ -36,8 +36,9 @@ import { NotfoundComponent } from './elements/notfound/notfound.component';
     AngularFireModule.initializeApp(firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
+
   ],
-  providers: [AuthService],
+  providers: [AuthService, ConpersoComponent, ConsComponent, RemarquesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

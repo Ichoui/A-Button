@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { NocifsService } from '../providers/nocifs.service';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { DatesService } from '../providers/dates.service';
@@ -11,6 +11,11 @@ import { AuthService } from '../user/providers/auth.service';
   templateUrl: './conperso.component.html',
   styleUrls: ['./conperso.component.scss']
 })
+
+@Injectable({
+  providedIn: 'root'
+})
+
 export class ConpersoComponent implements OnInit {
 
   fireUser;
@@ -105,7 +110,6 @@ export class ConpersoComponent implements OnInit {
       year: this.datesService.yearDate()
     });
     this.counters();
-
   }
 
   errorConPersoClick() {
@@ -117,7 +121,6 @@ export class ConpersoComponent implements OnInit {
     const db = firebase.firestore();
     const docRef = db.collection('dataRemarques');
     const docUser = db.collection('dataRemarquesCons');
-    console.log(removeOne);
 
     // On supprime de dataRemarquesCons 1 log
     docUser

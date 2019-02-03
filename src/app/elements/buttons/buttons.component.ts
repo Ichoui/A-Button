@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ConpersoComponent } from '../../conperso/conperso.component';
+import { ConsComponent } from '../../cons/cons.component';
+import { RemarquesComponent } from '../../remarques/remarques.component';
 
 @Component({
   selector: 'app-buttons',
@@ -7,9 +10,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public conPerso: ConpersoComponent, public con: ConsComponent, public remarques: RemarquesComponent) { }
 
   ngOnInit() {
   }
 
+  // TODO : pas oublier de faire le switch entre boutons con perso & remarques en fonction de l'état du switch !
+
+  // CON PERSO
+  conPersoClick() {
+    this.conPerso.conPersoClick();
+  }
+  errorConPersoClick() {
+    this.conPerso.errorConPersoClick();
+  }
+
+  // REMARQUES
+  remarqueClick() {
+    this.remarques.remarkClick();
+  }
+  errorRemarqueClick() {
+    this.remarques.errorRemark();
+  }
+
+  // CON
+  conClick() {
+    this.con.conClick();
+  }
+  errorConClick() {
+    this.con.errorCons();
+  }
 }

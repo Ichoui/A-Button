@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Injectable, Input, OnInit, Output } from '@angular/core';
 import { NocifsService } from '../providers/nocifs.service';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { DatesService } from '../providers/dates.service';
@@ -10,8 +10,12 @@ import * as firebase from 'firebase';
   styleUrls: ['./cons.component.scss']
 })
 
-export class ConsComponent implements OnInit {
+@Injectable({
+  providedIn: 'root'
+})
 
+
+export class ConsComponent implements OnInit {
 
   incrementer;
   docRef = this.db.collection('cons').doc('actualCons');

@@ -8,11 +8,9 @@ import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { User } from './user';
 
-
 @Injectable({
   providedIn: 'root'
 })
-
 
 export class AuthService implements OnInit {
 

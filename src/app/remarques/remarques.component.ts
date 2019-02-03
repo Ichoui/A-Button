@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { NocifsService } from '../providers/nocifs.service';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { DatesService } from '../providers/dates.service';
@@ -9,10 +9,15 @@ import * as firebase from 'firebase';
   templateUrl: './remarques.component.html',
   styleUrls: ['./remarques.component.scss']
 })
+
+@Injectable({
+  providedIn: 'root'
+})
+
+
 export class RemarquesComponent implements OnInit {
 
   incrementer;
-  // remarques: Nocifs;
   docRef = this.db.collection('remarques').doc('actualRemarques');
   docCountDay = this.db.collection('counters').doc('remarquesDay');
   docCountMonth = this.db.collection('counters').doc('remarquesMonth');
