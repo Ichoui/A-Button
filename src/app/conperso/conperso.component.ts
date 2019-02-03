@@ -23,7 +23,6 @@ export class ConpersoComponent implements OnInit {
   myConRemarkMonth;
   myConRemarkYear;
 
-
   constructor(public db: AngularFirestore, public nocifsService: NocifsService, public datesService: DatesService, public auth: AuthService) {
     // défini le nom Google de l'utilisateur actif
     this.fireUser = firebase.auth().currentUser;
@@ -114,10 +113,21 @@ export class ConpersoComponent implements OnInit {
     if (removeOne < 0) {
       removeOne = 0;
     }
+
     const db = firebase.firestore();
     const docRef = db.collection('dataRemarques');
     const docUser = db.collection('dataRemarquesCons');
     console.log(removeOne);
+
+    // On supprime de dataRemarquesCons 1 log
+    docUser
+      .where('number', '==', removeOne + 1).limit(1).get().then(querySnap => {
+      querySnap.forEach(e => {
+        docUser.doc(e.id).delete().then();
+        // update les compteurs visuellement
+        this.counters();
+      });
+    });
 
     // On supprime de dataRemarques 1 log
     docRef
@@ -125,18 +135,6 @@ export class ConpersoComponent implements OnInit {
       querySnap.forEach(e => {
         docRef.doc(e.id).delete().then();
     // update les compteurs visuellement
-        this.counters();
-      });
-    });
-
-    // On supprime de dataRemarquesCons 1 log
-    docUser
-      .where('user_id', '==', this.fireUser.displayName)
-      .where('number', '==', removeOne + 1).limit(1).get().then(querySnap => {
-      querySnap.forEach(e => {
-        docRef.doc(e.id).delete().then();
-        console.log(e.data());
-        // update les compteurs visuellement
         this.counters();
       });
     });
