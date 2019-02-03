@@ -72,9 +72,10 @@ export class ConsComponent implements OnInit {
     });
   }
 
-  clickCons() {
+  conClick() {
     const addOne = this.incrementer + 1;
     console.log(addOne);
+
     // Ajouter dans les data tracks
     this.db.collection('dataCons').add({
       number: addOne,
@@ -108,7 +109,7 @@ export class ConsComponent implements OnInit {
     const db = firebase.firestore();
     const docRef = db.collection('dataCons');
     console.log(removeOne);
-    docRef.where('number', '==', removeOne + 1).get().then(querySnap => {
+    docRef.where('number', '==', removeOne + 1).limit(1).get().then(querySnap => {
       querySnap.forEach(e => {
         docRef.doc(e.id).delete().then();
         this.counters();

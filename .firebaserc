@@ -1,5 +1,6 @@
 {
   "projects": {
-    "a-button": "a-button"
+    "a-button": "a-button",
+    "default": "a-button"
   }
 }

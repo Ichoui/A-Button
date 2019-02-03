@@ -104,7 +104,7 @@ export class RemarquesComponent implements OnInit {
     const db = firebase.firestore();
     const docRef = db.collection('dataRemarques');
     console.log(removeOne);
-    docRef.where('number', '==', removeOne + 1).get().then(querySnap => {
+    docRef.where('number', '==', removeOne + 1).limit(1).get().then(querySnap => {
       querySnap.forEach(e => {
         docRef.doc(e.id).delete().then();
         this.counters();

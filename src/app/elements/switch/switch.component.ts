@@ -17,7 +17,7 @@ export class SwitchComponent implements OnInit {
 
   theSwitcher() {
     this.switchEmitter.emit(this.switch = this.switch !== true);
-    console.log(this.switch)
+    // console.log(this.switch)
   }
 
 }

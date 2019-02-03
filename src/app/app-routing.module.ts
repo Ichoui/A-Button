@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './user/login/login.component';
 import { AuthGuard } from './user/guards/auth.guard';
+import { NotfoundComponent } from './elements/notfound/notfound.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
         component: LayoutComponent
       }
     ]
+  },
+  {
+    path:'**',
+    component: NotfoundComponent
   }
 ];
 

@@ -16,6 +16,7 @@ import { LoginComponent } from './user/login/login.component';
 import { SwitchComponent } from './elements/switch/switch.component';
 import { AuthService } from './user/providers/auth.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { NotfoundComponent } from './elements/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     LayoutComponent,
     ButtonsComponent,
     LoginComponent,
-    SwitchComponent
+    SwitchComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

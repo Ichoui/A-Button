@@ -7,5 +7,4 @@ export interface  User {
   numberCon?:string;
   dayCon?: string;
   monthCon?: string;
-
 }

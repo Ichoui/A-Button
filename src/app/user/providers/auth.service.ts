@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { filter, first, map, switchMap, take, tap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { User } from './user';
 
@@ -21,7 +21,6 @@ export class AuthService implements OnInit {
   constructor(public afAuth: AngularFireAuth, public afs: AngularFirestore, public router: Router) {
     this.user$ = afAuth.authState.pipe(
       switchMap(user => {
-        console.log(user);
         if (user) {
           this.router.navigate(['/remarques-de-cons']).then();
           return this.afs.doc<User>(`users/${user.displayName}`).valueChanges();

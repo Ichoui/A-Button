@@ -15,11 +15,11 @@ export class DatesService {
     const date = d.getDate();
     const month = d.getMonth() + 1;
     const year = d.getFullYear();
-    const fulldate = date + '/' + month + '/' + year;
     return d;
   }
 
   // Renvoie la date du jour sous un array
+  // Format : [1, 8, 2019]
   arrayDate() {
     const d = this.getDate();
     const date = d.getDate();
@@ -29,28 +29,33 @@ export class DatesService {
   }
 
   // Renvoie la date du jour lisible
+  // Format : 2/10/2019   12/8/2018
   dateLisible() {
     const d = this.arrayDate();
     return d[0] + '/' + d[1] + '/' + d[2];
   }
 
   // fonctions qui retournent date, mois et années
+  // Format : 1 2 3 ..
   dayDate() {
     const d = this.arrayDate();
     return d[0];
   }
 
+  // Format : 9 12
   monthDate() {
     const d = this.arrayDate();
     return d[1];
   }
 
+  // Format : 2019
   yearDate() {
     const d = this.arrayDate();
     return d[2];
   }
 
-  // Compte le nombre de document dans la collection passée en paramètres pour les jours / mois / annnées
+  // Compte le nombre de document dans la collection passée en paramètres
+  //  jours / mois / annnées
   daily(collection) {
     const today = this.arrayDate();
     let counter = 0;

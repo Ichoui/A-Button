@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Nocifs } from './nocifs';
+import * as firebase from 'firebase';
 
 
 @Injectable({
@@ -8,22 +9,32 @@ import { Nocifs } from './nocifs';
 })
 
 export class NocifsService {
+
   constructor(public db: AngularFirestore) {
+    this.fireUser = firebase.auth().currentUser;
   }
-  remarquesCollec: AngularFirestoreDocument<Nocifs>;
-  remarques$;
+
+  fireUser;
 
   countCollec: AngularFirestoreDocument;
+
+  remarquesCollec: AngularFirestoreDocument<Nocifs>;
+  remarques$;
   remarkDay$;
   remarkMonth$;
   remarkYear$;
 
+  conPersoCollec: AngularFirestoreDocument<Nocifs>;
+  conPerso$;
+  conPersoDay$;
+  conPersoMonth;
+  conPersoYear;
+
+  consCollec: AngularFirestoreDocument<Nocifs>;
+  cons$;
   consDay$;
   consMonth$;
   consYear$;
-
-
-
 
 
 // REMARQUES
@@ -47,12 +58,29 @@ export class NocifsService {
     return this.remarkYear$ = this.countCollec.valueChanges();
   }
 
+  // CON PERSO REMARQUES
+  getMyConRemark() {
+    this.conPersoCollec = this.db.collection('users').doc(this.fireUser.displayName);
+    return this.conPerso$ = this.conPersoCollec.valueChanges();
+  }
+
+  getMyConRemarkDay() {
+    this.countCollec = this.db.collection('counters').doc('remarquesDay');
+    return this.conPersoDay$ = this.countCollec.valueChanges();
+  }
+
+  getMyConRemarkMonth() {
+    this.countCollec = this.db.collection('counters').doc('remarquesMonth');
+    return this.conPersoMonth = this.countCollec.valueChanges();
+  }
+
+  getMyConRemarkYear() {
+    this.countCollec = this.db.collection('counters').doc('remarquesYear');
+    return this.conPersoYear = this.countCollec.valueChanges();
+  }
 
 
 // CONS
-  consCollec: AngularFirestoreDocument<Nocifs>;
-  cons$;
-
   getCons() {
     this.consCollec = this.db.collection('cons').doc('actualCons');
     return this.cons$ = this.consCollec.valueChanges();
