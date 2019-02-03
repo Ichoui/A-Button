@@ -14,14 +14,13 @@ export class ConsComponent implements OnInit {
 
 
   incrementer;
-  // remarques: Nocifs;
   docRef = this.db.collection('cons').doc('actualCons');
   docCountDay = this.db.collection('counters').doc('consDay');
   docCountMonth = this.db.collection('counters').doc('consMonth');
   docCountYear = this.db.collection('counters').doc('consYear');
   consDay;
   consMonth;
-  consYear; // unused for now
+  consYear; // unused in ConsComponent
 
 
   constructor(public db: AngularFirestore, public nocifsService: NocifsService, public datesService: DatesService) {
@@ -45,11 +44,6 @@ export class ConsComponent implements OnInit {
 
   ngOnInit() {
     this.counters();
-    const dateIllisible = this.datesService.getDate();
-    const dateArray = this.datesService.arrayDate();
-    const dateLisible = this.datesService.dateLisible();
-    // console.log(dateArray);
-    // console.log(dateLisible);
   }
 
   counters() {
@@ -112,10 +106,10 @@ export class ConsComponent implements OnInit {
     docRef.where('number', '==', removeOne + 1).limit(1).get().then(querySnap => {
       querySnap.forEach(e => {
         docRef.doc(e.id).delete().then();
+        // update les compteurs visuellement
         this.counters();
       });
     });
-    // update les compteurs visuellement
     // Remove un au compteur général et met à jour la data principale
     this.docRef.set({
       number: removeOne,

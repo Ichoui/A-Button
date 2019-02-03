@@ -10,11 +10,11 @@ import * as firebase from 'firebase';
 
 export class NocifsService {
 
+  fireUser;
   constructor(public db: AngularFirestore) {
     this.fireUser = firebase.auth().currentUser;
   }
 
-  fireUser;
 
   countCollec: AngularFirestoreDocument;
 
@@ -65,17 +65,17 @@ export class NocifsService {
   }
 
   getMyConRemarkDay() {
-    this.countCollec = this.db.collection('counters').doc('remarquesDay');
+    this.countCollec = this.db.collection('usersCounters').doc('remarquesDay'+this.fireUser.displayName);
     return this.conPersoDay$ = this.countCollec.valueChanges();
   }
 
   getMyConRemarkMonth() {
-    this.countCollec = this.db.collection('counters').doc('remarquesMonth');
+    this.countCollec = this.db.collection('usersCounters').doc('remarquesMonth'+this.fireUser.displayName);
     return this.conPersoMonth = this.countCollec.valueChanges();
   }
 
   getMyConRemarkYear() {
-    this.countCollec = this.db.collection('counters').doc('remarquesYear');
+    this.countCollec = this.db.collection('usersCounters').doc('remarquesYear'+this.fireUser.displayName);
     return this.conPersoYear = this.countCollec.valueChanges();
   }
 

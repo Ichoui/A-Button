@@ -7,7 +7,11 @@ import { AngularFirestore } from 'angularfire2/firestore';
 })
 export class DatesService {
 
-  constructor(public db: AngularFirestore) {}
+  fireUser;
+
+  constructor(public db: AngularFirestore) {
+    this.fireUser = firebase.auth().currentUser;
+  }
 
   // Renvoie la date du jour sous format illisible
   getDate() {
@@ -54,57 +58,103 @@ export class DatesService {
     return d[2];
   }
 
-  // Compte le nombre de document dans la collection passée en paramètres
+  // Compte le nombre de document présent dans la collection passée en paramètres, permet de track le nombre de clics
+  // Paramètre user optionnel (gère le cas d'un user connecté qui alimente ses datas de clics perso)
   //  jours / mois / annnées
-  daily(collection) {
+  daily(collection, user?) {
     const today = this.arrayDate();
-    let counter = 0;
     const db = firebase.firestore();
+    let counter = 0;
     const docRef = db.collection(collection);
-    // console.log(today);
-   return docRef.where('day', '==', today[0])
-      .get()
-      .then(function (querySnap) {
-        querySnap.forEach(function (doc) {
-          counter += 1;
-          // console.log('Same day => ', doc.data());
+    // const docRefConPerso = db.collection(collection).doc(this.fireUser.displayName).collection('dataPerso'); // Not available subcollection
+
+    if (user !== undefined) {
+      return docRef
+        .where('id_user', '==', user)
+        .where('day', '==', today[0])
+        .get()
+        .then(function (querySnap) {
+          querySnap.forEach(function (doc) {
+            counter += 1;
+            // console.log('Same day => ', doc.data());
+          });
+          return counter;
         });
-        return counter;
-      });
+    } else {
+      return docRef
+        .where('day', '==', today[0])
+        .get()
+        .then(function (querySnap) {
+          querySnap.forEach(function (doc) {
+            counter += 1;
+            // console.log('Same day => ', doc.data());
+          });
+          return counter;
+        });
+    }
   }
 
-  monthly(collection) {
+  monthly(collection, user?) {
     const month = this.arrayDate();
     let counter = 0;
-
     const db = firebase.firestore();
     const docRef = db.collection(collection);
-    return docRef.where('month', '==', month[1])
-      .get()
-      .then(function (querySnap) {
-        querySnap.forEach(function (doc) {
-          counter += 1;
-          // console.log('Same month => ', doc.data());
-        });
-        return counter;
 
-      });
+    if (user !== undefined) {
+      return docRef
+        .where('id_user', '==', user)
+        .where('month', '==', month[1])
+        .get()
+        .then(function (querySnap) {
+          querySnap.forEach(function (doc) {
+            counter += 1;
+            // console.log('Same month => ', doc.data());
+          });
+          return counter;
+        });
+    } else {
+      return docRef
+        .where('month', '==', month[1])
+        .get()
+        .then(function (querySnap) {
+          querySnap.forEach(function (doc) {
+            counter += 1;
+            // console.log('Same day => ', doc.data());
+          });
+          return counter;
+        });
+    }
   }
 
-  yearly(collection) {
+  yearly(collection, user?) {
     const year = this.arrayDate();
     let counter = 0;
-
     const db = firebase.firestore();
     const docRef = db.collection(collection);
-    return docRef.where('year', '==', year[2])
-      .get()
-      .then(function (querySnap) {
-        querySnap.forEach(function (doc) {
-          counter += 1;
-          // console.log('Same year => ', doc.data());
+
+    if (user !== undefined) {
+      return docRef
+        .where('id_user', '==', user)
+        .where('year', '==', year[2])
+        .get()
+        .then(function (querySnap) {
+          querySnap.forEach(function (doc) {
+            counter += 1;
+            // console.log('Same year => ', doc.data());
+          });
+          return counter;
         });
-        return counter;
-      });
+    } else {
+      return docRef
+        .where('year', '==', year[2])
+        .get()
+        .then(function (querySnap) {
+          querySnap.forEach(function (doc) {
+            counter += 1;
+            // console.log('Same day => ', doc.data());
+          });
+          return counter;
+        });
+    }
   }
 }

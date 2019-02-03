@@ -54,7 +54,12 @@ export class AuthService implements OnInit {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL
+      photoURL: user.photoURL,
+      conName:'MonCon',
+      number: 0,
+      day: 0,
+      month: 0,
+      year: 0
     };
 
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.displayName}`);

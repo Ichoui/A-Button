@@ -43,11 +43,6 @@ export class RemarquesComponent implements OnInit {
 
   ngOnInit() {
     this.counters();
-    const dateIllisible = this.datesService.getDate();
-    const dateArray = this.datesService.arrayDate();
-    const dateLisible = this.datesService.dateLisible();
-    // console.log(dateArray);
-    // console.log(dateLisible);
   }
 
   counters() {
@@ -70,7 +65,7 @@ export class RemarquesComponent implements OnInit {
     });
   }
 
-  clickRelou() {
+  remarkClick() {
     const addOne = this.incrementer + 1;
 
     // Ajouter dans les data tracks
@@ -96,7 +91,7 @@ export class RemarquesComponent implements OnInit {
 
   }
 
-  errorButton() {
+  errorRemark() {
     let removeOne = this.incrementer - 1;
     if (removeOne < 0) {
       removeOne = 0;
@@ -107,10 +102,10 @@ export class RemarquesComponent implements OnInit {
     docRef.where('number', '==', removeOne + 1).limit(1).get().then(querySnap => {
       querySnap.forEach(e => {
         docRef.doc(e.id).delete().then();
+        // update les compteurs visuellement
         this.counters();
       });
     });
-    // update les compteurs visuellement
     // Remove un au compteur général et met à jour la data principale
     this.docRef.set({
       number: removeOne,

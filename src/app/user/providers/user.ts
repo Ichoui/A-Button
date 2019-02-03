@@ -4,7 +4,8 @@ export interface  User {
   displayName: string;
   photoURL: string;
   conName?: string;
-  numberCon?:string;
-  dayCon?: string;
-  monthCon?: string;
+  number?:number;
+  day?: number;
+  month?: number;
+  year?: number;
 }
