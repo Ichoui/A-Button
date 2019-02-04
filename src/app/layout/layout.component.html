@@ -11,7 +11,15 @@
   <img src="../../assets/images/avatar_con.svg" width="250px" alt="">
 </div>
 
-<div class="panel-hide">
+<div id="arrow" class="arrow-pannel-show" (click)="extendMenu()">
+  <span class="icon-left-arrow"></span>
+</div>
+<div id="menu">
+  <form [formGroup]="formConName" (ngSubmit)="onSubmit()">
+    <span class="icon-close" (click)="closeMenu()"></span>
+    <input id="conName" type="text" formControlName="conName" placeholder="Nom de mon con">
+    <button class="anim-underlined" type="submit">Nouveau nom</button>
+  </form>
   <button class='logout' (click)="logout()">Logout</button>
 </div>
 

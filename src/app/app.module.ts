@@ -17,6 +17,7 @@ import { SwitchComponent } from './elements/switch/switch.component';
 import { AuthService } from './user/providers/auth.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NotfoundComponent } from './elements/notfound/notfound.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { NotfoundComponent } from './elements/notfound/notfound.component';
     AngularFireModule.initializeApp(firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-
+    ReactiveFormsModule
   ],
   providers: [
     AuthService,
