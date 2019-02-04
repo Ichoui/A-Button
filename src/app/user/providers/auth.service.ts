@@ -1,12 +1,12 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/internal/Observable';
-import { of } from 'rxjs';
-import { AngularFireAuth } from 'angularfire2/auth';
+import {Injectable, OnInit} from '@angular/core';
+import {Observable} from 'rxjs/internal/Observable';
+import {of} from 'rxjs';
+import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { switchMap } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { User } from './user';
+import {AngularFirestore, AngularFirestoreDocument} from 'angularfire2/firestore';
+import {switchMap} from 'rxjs/operators';
+import {Router} from '@angular/router';
+import {User} from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -53,11 +53,24 @@ export class AuthService implements OnInit {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      conName:'MonCon',
+      conName: 'Mon Con',
       number: 0,
       day: 0,
       month: 0,
       year: 0
+    };
+
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.displayName}`);
+    return userRef.set(data, {merge: true});
+  }
+
+  updateConUser(user, nameCon) {
+    const data: User = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      conName: nameCon,
     };
 
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.displayName}`);

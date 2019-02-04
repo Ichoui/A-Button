@@ -1,3 +1,7 @@
-<button (click)="theSwitcher()">
-  choisi ton con de base
-</button>
+<div class="switch" (click)="theSwitcher()">
+  <span class="icon-switch"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
+</div>
+
+
+<div class="switching-txt" *ngIf="switch === true">Mon con :<br><span>{{ user.conName }}</span></div>
+<div class="switching-txt" *ngIf="switch === false">Remarques de cons</div>
