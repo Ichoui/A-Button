@@ -6,8 +6,8 @@
 <!--<img src="{{ user.photoURL }}" alt="" width="75px"><br>-->
 
 
-<app-remarques *ngIf="switch === false"></app-remarques>
 <app-conperso *ngIf="switch === true"></app-conperso>
+<app-remarques *ngIf="switch === false"></app-remarques>
 <hr>
 <hr>
 <app-switch (switchEmitter)="emitter($event)"></app-switch>
@@ -15,5 +15,4 @@
 <hr>
 <app-cons></app-cons>
 
-
-<app-buttons (switchEmitter)="emitter($event)"></app-buttons>
+<app-buttons [(switch)]="switch"></app-buttons>

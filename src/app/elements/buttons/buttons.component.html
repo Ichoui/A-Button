@@ -1,15 +1,18 @@
 <hr>
 <hr>
+<div class="block-con-perso" *ngIf="switch === true">
 CON PERSO
-
-
-<button class="button" (click)="conPersoClick()">BigButton</button>
-<button class="button" (click)="errorConPersoClick()">ErrorButton</button>
-<hr>
+  <button class="button" (click)="conPersoClick()">BigButton</button>
+  <button class="button" (click)="errorConPersoClick()">ErrorButton</button>
+</div>
+<div class="block-remarques" *ngIf="switch === false">
 REMARQUES
-<button class="button" (click)="remarqueClick()">BigButton</button>
-<button class="button" (click)="errorRemarqueClick()">BigButton</button>
+  <button class="button" (click)="remarqueClick()">BigButton</button>
+  <button class="button" (click)="errorRemarqueClick()">BigButton</button>
+</div>
 <hr>
+<div class="block-cons">
 CON
-<button class="button" (click)="conClick()">BigButton</button>
-<button class="button" (click)="errorConClick()">BigButton</button>
+  <button class="button" (click)="conClick()">BigButton</button>
+  <button class="button" (click)="errorConClick()">BigButton</button>
+</div>

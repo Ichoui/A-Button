@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ConpersoComponent } from '../../conperso/conperso.component';
-import { ConsComponent } from '../../cons/cons.component';
-import { RemarquesComponent } from '../../remarques/remarques.component';
+import {Component, Input, OnInit} from '@angular/core';
+import {ConpersoComponent} from '../../conperso/conperso.component';
+import {ConsComponent} from '../../cons/cons.component';
+import {RemarquesComponent} from '../../remarques/remarques.component';
 
 @Component({
   selector: 'app-buttons',
@@ -10,17 +10,25 @@ import { RemarquesComponent } from '../../remarques/remarques.component';
 })
 export class ButtonsComponent implements OnInit {
 
-  constructor(public conPerso: ConpersoComponent, public con: ConsComponent, public remarques: RemarquesComponent) { }
+  constructor(
+    public conPerso: ConpersoComponent,
+    public con: ConsComponent,
+    public remarques: RemarquesComponent,
+  ) {}
+
+  @Input() switch;
 
   ngOnInit() {
   }
 
   // TODO : pas oublier de faire le switch entre boutons con perso & remarques en fonction de l'état du switch !
 
+
   // CON PERSO
   conPersoClick() {
     this.conPerso.conPersoClick();
   }
+
   errorConPersoClick() {
     this.conPerso.errorConPersoClick();
   }
@@ -29,6 +37,7 @@ export class ButtonsComponent implements OnInit {
   remarqueClick() {
     this.remarques.remarkClick();
   }
+
   errorRemarqueClick() {
     this.remarques.errorRemark();
   }
@@ -37,6 +46,7 @@ export class ButtonsComponent implements OnInit {
   conClick() {
     this.con.conClick();
   }
+
   errorConClick() {
     this.con.errorCons();
   }

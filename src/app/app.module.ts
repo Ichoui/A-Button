@@ -38,7 +38,13 @@ import { NotfoundComponent } from './elements/notfound/notfound.component';
     AngularFireAuthModule,
 
   ],
-  providers: [AuthService, ConpersoComponent, ConsComponent, RemarquesComponent],
+  providers: [
+    AuthService,
+    ConpersoComponent,
+    ConsComponent,
+    RemarquesComponent,
+    SwitchComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
