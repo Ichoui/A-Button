@@ -7,7 +7,15 @@
   <app-cons></app-cons>
 </div>
 
-<button (click)="logout()">Logout</button>
+<div class="avatar-con">
+  <img src="../../assets/images/avatar_con.svg" width="250px" alt="">
+</div>
+
+<div class="panel-hide">
+  <button class='logout' (click)="logout()">Logout</button>
+</div>
+
+
 <div class="footer">
   <app-buttons [(switch)]="switch"></app-buttons>
 </div>
