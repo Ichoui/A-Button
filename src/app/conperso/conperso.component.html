@@ -1,8 +1,5 @@
-Mon Con Perso
-<button class="button" (click)="conPersoClick()">BigButton</button>
-<button class="button" (click)="errorConPersoClick()">ErrorButton</button>
-<div>{{ incrementer }} Remarques<br>au total</div>
-<div>{{ myConRemarkMonth}} Remarques<br>ce mois-ci</div>
-<div>{{ myConRemarkDay}} Remarques<br> aujourd'hui</div>
-
-<!--<div class="switch" [routerLink]="['/cons']">Switch</div>-->
+<div class="counters conperso">
+  <div><span>{{ incrementer }}</span> Remarques<br>au total</div>
+  <div><span>{{ myConRemarkMonth}}</span> Remarques<br>ce mois-ci</div>
+  <div><span>{{ myConRemarkDay}}</span> Remarques<br> aujourd'hui</div>
+</div>

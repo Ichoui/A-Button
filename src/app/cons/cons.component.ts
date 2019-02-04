@@ -7,7 +7,7 @@ import * as firebase from 'firebase';
 @Component({
   selector: 'app-cons',
   templateUrl: './cons.component.html',
-  styleUrls: ['./cons.component.scss']
+  styleUrls: ['./cons.component.scss', '../../scss/headersShared.scss']
 })
 
 @Injectable({

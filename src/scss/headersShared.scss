@@ -1,0 +1,41 @@
+@import '../scss/stylefullpage';
+
+.counters {
+  display: flex;
+  height: 100%;
+  > div {
+    display: flex;
+    align-items: center;
+    margin-left: .8rem;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    font-size: .7em;
+    > span {
+      margin-right: .3rem;
+      color: $brand-primary;
+      font-size: 2.5em;
+    }
+  }
+
+  div:first-child {
+    font-size: 1em;
+    span {
+      font-size: 3.5em;
+
+    }
+  }
+}
+
+.conperso, .remarques {
+  justify-content: flex-end;
+  div:first-child {
+    //margin-left: .3rem;
+  }
+}
+
+.cons {
+  justify-content: flex-start;
+  div:last-child {
+    //margin-right: .3rem;
+  }
+}

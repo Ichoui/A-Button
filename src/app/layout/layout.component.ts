@@ -21,12 +21,12 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit() {
     this.authService.user$.subscribe(user => this.user = user);
-    console.log(this.switch);
+    // console.log(this.switch);
   }
 
   emitter($event) {
     this.switch = $event;
-    console.log(this.switch);
+    // console.log(this.switch);
   }
 
 

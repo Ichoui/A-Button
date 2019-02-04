@@ -1,0 +1,33 @@
+@import "../../scss/stylefullpage";
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 70px;
+
+  app-conperso, app-remarques, app-cons {
+    width: 40%;
+    height: 100%;
+    border-bottom: 2px solid $brand-secondary;
+  }
+
+  app-switch {
+    height: 100%;
+    width: 20%;
+  }
+
+  // margins
+  app-conperso, app-remarques {
+    margin-left: 5rem;
+  }
+  app-cons {
+    margin-right: 5rem;
+  }
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

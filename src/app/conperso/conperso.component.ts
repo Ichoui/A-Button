@@ -9,7 +9,7 @@ import { AuthService } from '../user/providers/auth.service';
 @Component({
   selector: 'app-conperso',
   templateUrl: './conperso.component.html',
-  styleUrls: ['./conperso.component.scss']
+  styleUrls: ['./conperso.component.scss', '../../scss/headersShared.scss']
 })
 
 @Injectable({

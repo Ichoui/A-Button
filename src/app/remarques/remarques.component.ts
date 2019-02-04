@@ -7,7 +7,7 @@ import * as firebase from 'firebase';
 @Component({
   selector: 'app-remarques',
   templateUrl: './remarques.component.html',
-  styleUrls: ['./remarques.component.scss']
+  styleUrls: ['./remarques.component.scss', '../../scss/headersShared.scss']
 })
 
 @Injectable({
