@@ -51,8 +51,8 @@ export class AuthService implements OnInit {
     const userDoc = db.collection('users').doc(user.displayName);
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.displayName}`);
 
-    // Vérifie si l'utilisateur existe via collection/document
-    // En fonction, créé l'utilisateur et set les datas à 0 ou update l'utilisateur sans y toucher
+    // Vérifie si l'utilisateur existe via collection/document associé
+    // En fonction, créé l'utilisateur et set les datas par défaut-- OU -- update l'utilisateur sans toucher aux creds existantes
     return userDoc.get().then(docSnapshot => {
       if (docSnapshot.exists) {
         console.log('doc existe');

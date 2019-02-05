@@ -113,4 +113,21 @@
     }
   }
 
+  .waves {
+    background-color: $brand-primary;
+    height: 230px;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+    width: 50%;
+  }
+  .wave-left {
+    border-radius: 100% 0% 100% 0% / 65% 100% 0% 0%;
+    left: 0;
+  }
+  .wave-right {
+    border-radius: 0% 100% 100% 0% / 0% 65% 0% 100%;
+    right: 0;
+  }
+
 }
