@@ -1,10 +1,10 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { NocifsService } from '../providers/nocifs.service';
-import { AngularFirestore } from 'angularfire2/firestore';
-import { DatesService } from '../providers/dates.service';
+import {Component, Injectable, OnInit} from '@angular/core';
+import {NocifsService} from '../providers/nocifs.service';
+import {AngularFirestore} from 'angularfire2/firestore';
+import {DatesService} from '../providers/dates.service';
 import * as firebase from 'firebase';
-import { User } from '../user/providers/user';
-import { AuthService } from '../user/providers/auth.service';
+import {User} from '../user/providers/user';
+import {AuthService} from '../user/providers/auth.service';
 
 @Component({
   selector: 'app-conperso',
@@ -21,7 +21,7 @@ export class ConpersoComponent implements OnInit {
   fireUser;
   user: User;
 
-  incrementer;
+  incrementer = 0;
   docRef = this.db.collection('users');
   docCount = this.db.collection('usersCounters');
   myConRemarkDay;
@@ -34,7 +34,12 @@ export class ConpersoComponent implements OnInit {
 
     // Observable qui consomme le nocif service approprié et l'envoie à la vue
     this.nocifsService.getMyConRemark().subscribe(i => {
-      this.incrementer = i.number;
+      // Sécurité lorsqu'un compte est créé car i est undefined, et ça plante les logs
+      if (i === undefined) {
+        this.incrementer = 0;
+      } else {
+        this.incrementer = i.number;
+      }
     });
 
     this.nocifsService.getMyConRemarkDay().subscribe(i => {
@@ -52,24 +57,23 @@ export class ConpersoComponent implements OnInit {
 
   ngOnInit() {
     this.counters();
-    // this.auth.user$.subscribe(user => this.user = user);
   }
 
   counters() {
     this.datesService.daily('dataRemarquesCons', this.fireUser.displayName).then(async (data) => {
-      this.docCount.doc('remarquesDay'+this.fireUser.displayName).set({
+      this.docCount.doc('remarquesDay' + this.fireUser.displayName).set({
         remarquesConDay: data
       });
     });
 
     this.datesService.monthly('dataRemarquesCons', this.fireUser.displayName).then(async (data) => {
-      this.docCount.doc('remarquesMonth'+this.fireUser.displayName).set({
+      this.docCount.doc('remarquesMonth' + this.fireUser.displayName).set({
         remarquesConMonth: data
       });
     });
 
     this.datesService.yearly('dataRemarquesCons', this.fireUser.displayName).then(async (data) => {
-      this.docCount.doc('remarquesYear'+this.fireUser.displayName).set({
+      this.docCount.doc('remarquesYear' + this.fireUser.displayName).set({
         remarquesConYear: data
       });
     });
@@ -137,7 +141,7 @@ export class ConpersoComponent implements OnInit {
       .where('number', '==', removeOne + 1).limit(1).get().then(querySnap => {
       querySnap.forEach(e => {
         docRef.doc(e.id).delete().then();
-    // update les compteurs visuellement
+        // update les compteurs visuellement
         this.counters();
       });
     });

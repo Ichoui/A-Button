@@ -31,7 +31,7 @@
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 50%
+  top: 45%
 }
 
 .arrow-pannel-show {
@@ -82,34 +82,34 @@
   transform: translateX(-5px);
   right: 0 !important;
   visibility: visible;
+  z-index: 999;
 }
 
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  app-buttons {
-  }
   .texts {
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     text-align: center;
     width: 1000px;
     transform: translate(-50%);
     left: 50%;
     h2 {
       padding-bottom: 10px;
+      text-transform: uppercase;
       font-weight: bold;
       width: 130px;
       text-align: center;
       margin: 0 auto;
       border-bottom: 1px solid $black-color;
     }
+    p:nth-child(2) {
+      margin-top: 10px;
+    }
     p {
       margin: 0;
-    }
-    p:nth-child(1) {
-      margin-top: 10px;
     }
   }
 

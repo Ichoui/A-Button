@@ -1,0 +1,21 @@
+@import "../../../scss/stylefullpage";
+
+img {
+}
+
+.lost {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+  .backer {
+    color: $brand-secondary;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

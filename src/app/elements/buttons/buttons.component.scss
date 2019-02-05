@@ -3,7 +3,7 @@
 .all-those-fuckin-buttons-to-display {
   display: flex;
   justify-content: center;
-  margin-bottom: 120px;
+  margin-bottom: 140px;
   .blocks {
     display: flex;
     flex-direction: column;
@@ -40,7 +40,8 @@
 
   .except {
     span {
-      font-size: 1.3em;
+      //font-size: 1.3em;
+      font-size: 1.7em;
     }
   }
   .normalb {

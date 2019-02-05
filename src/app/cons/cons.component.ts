@@ -72,7 +72,6 @@ export class ConsComponent implements OnInit {
 
   conClick() {
     const addOne = this.incrementer + 1;
-    console.log(addOne);
 
     // Ajouter dans les data tracks
     this.db.collection('dataCons').add({

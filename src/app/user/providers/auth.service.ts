@@ -38,9 +38,8 @@ export class AuthService implements OnInit {
   loginGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
     this.afAuth.auth.signInWithPopup(provider).then((credential) => {
-      const userAuth = firebase.auth().currentUser;
-      this.updateUser(credential.user);
-      this.router.navigate(['/remarques-de-cons']);
+      this.updateUser(credential.user).then();
+      this.router.navigate(['/remarques-de-cons']).then();
     });
   }
 
@@ -48,25 +47,43 @@ export class AuthService implements OnInit {
   * Permet de mettre à jour la data d'un utilisateur avec les credential Google
   * */
   updateUser(user) {
-    const data: User = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      conName: 'Mon Con',
-      number: 0,
-      day: 0,
-      month: 0,
-      year: 0
-    };
-
+    const db = firebase.firestore();
+    const userDoc = db.collection('users').doc(user.displayName);
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.displayName}`);
-    return userRef.set(data, {merge: true});
+
+    // Vérifie si l'utilisateur existe via collection/document
+    // En fonction, créé l'utilisateur et set les datas à 0 ou update l'utilisateur sans y toucher
+    return userDoc.get().then(docSnapshot => {
+      if (docSnapshot.exists) {
+        console.log('doc existe');
+        const data: User = {
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL
+        };
+        return userRef.set(data, {merge: true});
+      } else {
+        console.log('doc existe pas');
+        const data: User = {
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          number: 0,
+          day: 0,
+          month: 0,
+          year: 0,
+          conName: 'Mon Con'
+        };
+        return userRef.set(data, {merge: true});
+      }
+    });
   }
 
   /*
-  * Update le nom du con de l'utilisateur ET ses creds principales (ne touche pas aux autres datas)
-  * */
+* Update le nom du con de l'utilisateur ET ses creds principales (ne touche pas aux autres datas)
+* */
   updateConUser(user, nameCon) {
     const data: User = {
       uid: user.uid,
