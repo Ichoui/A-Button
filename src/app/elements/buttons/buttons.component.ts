@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ConpersoComponent} from '../../conperso/conperso.component';
 import {ConsComponent} from '../../cons/cons.component';
 import {RemarquesComponent} from '../../remarques/remarques.component';
+import {AvatarconComponent} from '../avatarcon/avatarcon.component';
 
 @Component({
   selector: 'app-buttons',
@@ -14,7 +15,9 @@ export class ButtonsComponent implements OnInit {
     public conPerso: ConpersoComponent,
     public con: ConsComponent,
     public remarques: RemarquesComponent,
-  ) {}
+    public avatarCon: AvatarconComponent
+  ) {
+  }
 
   @Input() switch;
 
@@ -47,5 +50,14 @@ export class ButtonsComponent implements OnInit {
 
   errorConClick() {
     this.con.errorCons();
+  }
+
+  // AVATAR CON
+  hitMyCon() {
+    this.avatarCon.hitMyCon();
+  }
+
+  healMyCon() {
+    this.avatarCon.healMyCon();
   }
 }

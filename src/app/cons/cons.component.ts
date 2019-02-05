@@ -14,7 +14,6 @@ import * as firebase from 'firebase';
   providedIn: 'root'
 })
 
-
 export class ConsComponent implements OnInit {
 
   incrementer;

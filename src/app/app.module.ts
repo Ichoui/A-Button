@@ -18,6 +18,7 @@ import { AuthService } from './user/providers/auth.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NotfoundComponent } from './elements/notfound/notfound.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { AvatarconComponent } from './elements/avatarcon/avatarcon.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     ButtonsComponent,
     LoginComponent,
     SwitchComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    AvatarconComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     ConpersoComponent,
     ConsComponent,
     RemarquesComponent,
-    SwitchComponent
+    SwitchComponent,
+    AvatarconComponent
   ],
   bootstrap: [AppComponent]
 })
