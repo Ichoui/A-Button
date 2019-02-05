@@ -9,8 +9,8 @@
       <span class="icon-moins"></span>
     </div>
   </div>
-  <div class="block-remarques" *ngIf="switch === false">
-    <div class="button normalb" (click)="remarqueClick()" title="Ajouter une remarque">
+  <div class="block-remarques blocks" *ngIf="switch === false">
+    <div class="button except" (click)="remarqueClick()" title="Ajouter une remarque" style="padding: 6px;">
       <span class="icon-remark-plus"><span class="path1"></span><span class="path2"></span></span>
     </div>
     <div class="button bottom" (click)="errorRemarqueClick()" title="Retirer une remarque">
