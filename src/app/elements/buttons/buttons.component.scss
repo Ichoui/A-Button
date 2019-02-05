@@ -1,0 +1,41 @@
+.all-those-fuckin-buttons-to-display {
+  display: flex;
+  justify-content: center;
+
+  .blocks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+    justify-content: flex-end;
+  }
+
+  .block-hit-my-con {
+    margin-bottom: 15px;
+  }
+
+  .button {
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+
+  .normalb {
+    span {
+      font-size: 2em;
+    }
+  }
+  .bigb {
+    span {
+      font-size: 4em;
+    }
+  }
+  .bottom {
+    margin-top: 10px;
+    span {
+      font-size: 1.5em;
+    }
+  }
+}

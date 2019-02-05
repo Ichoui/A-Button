@@ -21,8 +21,6 @@ export class ButtonsComponent implements OnInit {
   ngOnInit() {
   }
 
-  // TODO : pas oublier de faire le switch entre boutons con perso & remarques en fonction de l'état du switch !
-
 
   // CON PERSO
   conPersoClick() {

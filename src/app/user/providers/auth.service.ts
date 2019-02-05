@@ -64,13 +64,16 @@ export class AuthService implements OnInit {
     return userRef.set(data, {merge: true});
   }
 
+  /*
+  * Update le nom du con de l'utilisateur ET ses creds principales (ne touche pas aux autres datas)
+  * */
   updateConUser(user, nameCon) {
     const data: User = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      conName: nameCon,
+      conName: nameCon
     };
 
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.displayName}`);

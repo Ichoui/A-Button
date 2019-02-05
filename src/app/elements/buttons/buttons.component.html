@@ -1,18 +1,40 @@
-<hr>
-<hr>
-<div class="block-con-perso" *ngIf="switch === true">
-CON PERSO
-  <button class="button" (click)="conPersoClick()">BigButton</button>
-  <button class="button" (click)="errorConPersoClick()">ErrorButton</button>
-</div>
-<div class="block-remarques" *ngIf="switch === false">
-REMARQUES
-  <button class="button" (click)="remarqueClick()">BigButton</button>
-  <button class="button" (click)="errorRemarqueClick()">BigButton</button>
-</div>
-<hr>
-<div class="block-cons">
-CON
-  <button class="button" (click)="conClick()">BigButton</button>
-  <button class="button" (click)="errorConClick()">BigButton</button>
+<div class="all-those-fuckin-buttons-to-display">
+
+  <!-- LEFT PART-->
+  <div class="block-con-perso blocks" *ngIf="switch === true">
+    <div class="button normalb" (click)="conPersoClick()" title="Ajouter une remarque de mon Con">
+      <span class="icon-remark-plus"><span class="path1"></span><span class="path2"></span></span>
+    </div>
+    <div class="buttonbottom" (click)="errorConPersoClick()" title="Retirer une remarque de mon Con">
+      <span class="icon-moins"></span>
+    </div>
+  </div>
+  <div class="block-remarques" *ngIf="switch === false">
+    <div class="button normalb" (click)="remarqueClick()" title="Ajouter une remarque">
+      <span class="icon-remark-plus"><span class="path1"></span><span class="path2"></span></span>
+    </div>
+    <div class="button bottom" (click)="errorRemarqueClick()" title="Retirer une remarque">
+      <span class="icon-moins"></span>
+    </div>
+  </div>
+
+  <!-- MID PART-->
+  <div class="block-hit-my-con blocks">
+    <div class="button bigb" title="Taper mon Con">
+      <span class="icon-hit-con"></span>
+    </div>
+    <div class="button bottom" title="Soigner mon Con">
+      <span class="icon-heal-con"></span>
+    </div>
+  </div>
+
+  <!-- RIGHT PART-->
+  <div class="block-cons blocks">
+    <div class="button normalb" (click)="conClick()" title="Ajouter un con">
+      <span class="icon-plus-con"></span>
+    </div>
+    <div class="button bottom" (click)="errorConClick()" title="Retirer un con">
+      <span class="icon-moins"></span>
+    </div>
+  </div>
 </div>

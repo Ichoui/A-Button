@@ -11,16 +11,17 @@
   <img src="../../assets/images/avatar_con.svg" width="250px" alt="">
 </div>
 
-<div id="arrow" class="arrow-pannel-show" (click)="extendMenu()">
+<div id="arrow" class="arrow-pannel-show" (click)="extendMenu()" title="Ouvrir le menu">
   <span class="icon-left-arrow"></span>
 </div>
 <div id="menu">
+  <img src="{{ user.photoURL }}" alt="">
   <form [formGroup]="formConName" (ngSubmit)="onSubmit()">
-    <span class="icon-close" (click)="closeMenu()"></span>
-    <input id="conName" type="text" formControlName="conName" placeholder="Nom de mon con">
+    <span class="icon-close" (click)="closeMenu()" title="Fermer le menu"></span>
+    <input id="conName" type="text" formControlName="conName" placeholder="Nom de mon Con">
     <button class="anim-underlined" type="submit">Nouveau nom</button>
   </form>
-  <button class='logout' (click)="logout()">Logout</button>
+  <span class="icon-logout" (click)="logout()" title="Se déconnecter"></span>
 </div>
 
 
