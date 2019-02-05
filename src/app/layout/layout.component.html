@@ -15,7 +15,7 @@
   <span class="icon-left-arrow"></span>
 </div>
 <div id="menu">
-  <img src="{{ user.photoURL }}" alt="">
+  <img *ngIf="user" src="{{ user.photoURL }}" alt="">
   <form [formGroup]="formConName" (ngSubmit)="onSubmit()">
     <span class="icon-close" (click)="closeMenu()" title="Fermer le menu"></span>
     <input id="conName" type="text" formControlName="conName" placeholder="Nom de mon Con">
@@ -27,4 +27,14 @@
 
 <div class="footer">
   <app-buttons [(switch)]="switch"></app-buttons>
+  <div class="texts">
+    <h2>Con'teur</h2>
+    <p>La vie n'est pas un long fleuve tranquille...</p>
+    <p>Un con peu surgir et changer une journée paisible et ensoleillée en un jour à chier, couvert par un temps gris...
+      CON'TEUR vous permettra donc de cliquer tout à chaque remarques que fera un con à côté de vous.
+    </p>
+    <p>Le compteur de clic vous aidera à relativiser sur votre propre statut de con, et ainsi, vous sentir mieux, car ne
+      l'oublions pas, nous sommes tous le con de quelqu'un ...
+    </p>
+  </div>
 </div>

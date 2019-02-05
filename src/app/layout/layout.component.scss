@@ -51,6 +51,7 @@
   right: 0;
   transform: translate(500px);
   transition: all .5s;
+  visibility: hidden;
   .icon-close {
     position: absolute;
     right: 3px;
@@ -71,7 +72,7 @@
     color: $brand-secondary;
     font-size: 1.6em;
     &:hover {
-      cursor:pointer;
+      cursor: pointer;
       color: darken($brand-secondary, 15%);
     }
   }
@@ -80,10 +81,36 @@
 #menu.extend-menu {
   transform: translateX(-5px);
   right: 0 !important;
+  visibility: visible;
 }
 
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  app-buttons {
+  }
+  .texts {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 1000px;
+    transform: translate(-50%);
+    left: 50%;
+    h2 {
+      padding-bottom: 10px;
+      font-weight: bold;
+      width: 130px;
+      text-align: center;
+      margin: 0 auto;
+      border-bottom: 1px solid $black-color;
+    }
+    p {
+      margin: 0;
+    }
+    p:nth-child(1) {
+      margin-top: 10px;
+    }
+  }
+
 }
