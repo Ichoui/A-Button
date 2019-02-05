@@ -18,8 +18,11 @@
   <img *ngIf="user" src="{{ user.photoURL }}" alt="">
   <form [formGroup]="formConName" (ngSubmit)="onSubmit()">
     <span class="icon-close" (click)="closeMenu()" title="Fermer le menu"></span>
-    <input id="conName" type="text" formControlName="conName" placeholder="Nom de mon Con">
-    <button class="anim-underlined" type="submit">Nouveau nom</button>
+    <span class="input-qui-dechire">
+      <input id="conName" class="slide-up" type="text" formControlName="conName" placeholder="Nom de mon Con"/>
+      <label for="conName">Mon Con</label>
+    </span>
+    <button class="bouton-qui-se-pousse-quand-tu-lui-demande" type="submit">OK</button>
   </form>
   <span class="icon-logout" (click)="logout()" title="Se déconnecter"></span>
 </div>
