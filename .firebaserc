@@ -1,6 +1,7 @@
 {
   "projects": {
     "a-button": "a-button",
-    "default": "a-button"
+    "default": "a-button",
+    "Cons": "a-button"
   }
 }

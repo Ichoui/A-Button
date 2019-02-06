@@ -9,3 +9,7 @@ export interface  User {
   month?: number;
   year?: number;
 }
+
+export interface Con {
+  conName
+}

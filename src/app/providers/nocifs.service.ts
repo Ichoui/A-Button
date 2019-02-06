@@ -101,4 +101,9 @@ export class NocifsService {
     return this.consYear$ = this.countCollec.valueChanges();
   }
 
+  // Avatar
+  getAvatar() {
+    return this.db.collection('avatarCons').doc(this.fireUser.displayName).valueChanges();
+  }
+
 }

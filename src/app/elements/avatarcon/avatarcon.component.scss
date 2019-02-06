@@ -1,0 +1,125 @@
+@import "../../../scss/stylefullpage";
+
+.icon-heal-con {
+  color: $brand-secondary;
+  font-size: 2em;
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+// KEYFRAMES
+@keyframes shake {
+  from, to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(-4px, -2px, 0);
+  }
+
+  40%, 40%, 60%, 80% {
+    transform: translate3d(4px, 2px, 0);
+  }
+}
+
+@keyframes slideOutDown {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(0, 800%, 0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(-800%, 0, 0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(800%, 0, 0);
+  }
+}
+
+@keyframes slideOutUp {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    visibility: hidden;
+    transform: translate3d(0, -800%, 0);
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    transform-origin: center;
+    transform: rotate3d(0, 0, 1, -200deg);
+    opacity: 0;
+  }
+
+  to {
+    transform-origin: center;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+// Classes link KeyFrames
+.rotateIn {
+  visibility: visible;
+  animation-duration: 1.5s;
+  animation-fill-mode: both;
+  animation-name: rotateIn;
+}
+
+.slideOutDown {
+  visibility: visible;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: slideOutDown;
+}
+
+.slideOutLeft {
+  visibility: visible;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: slideOutLeft;
+}
+
+.slideOutRight {
+  visibility: visible;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: slideOutRight;
+}
+
+.slideOutUp {
+  visibility: visible;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: slideOutUp;
+}
+
+.shake {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: shake;
+}
