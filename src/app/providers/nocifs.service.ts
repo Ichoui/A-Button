@@ -36,6 +36,8 @@ export class NocifsService {
   consMonth$;
   consYear$;
 
+  conAvatar$;
+
 
 // REMARQUES
   getRemarques() {
@@ -103,7 +105,8 @@ export class NocifsService {
 
   // Avatar
   getAvatar() {
-    return this.db.collection('avatarCons').doc(this.fireUser.displayName).valueChanges();
+    this.countCollec = this.db.collection('avatarCons').doc(this.fireUser.displayName);
+    return this.conAvatar$ = this.countCollec.valueChanges();
   }
 
 }

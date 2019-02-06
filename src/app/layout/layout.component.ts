@@ -4,6 +4,7 @@ import {User} from '../user/providers/user';
 import {Router} from '@angular/router';
 import * as firebase from 'firebase';
 import {FormControl, FormGroup} from '@angular/forms';
+import {ResetService} from '../providers/reset.service';
 
 @Component({
   selector: 'app-layout',
@@ -13,6 +14,9 @@ import {FormControl, FormGroup} from '@angular/forms';
 
 export class LayoutComponent implements OnInit {
 
+  // A PASSER EN FALSE QUAND ON DEV PLUS POUR MASQUER CONSOLE
+  devMode: false;
+
   // Provient du component Switch
   switch: boolean = true;
   user: User;
@@ -20,7 +24,7 @@ export class LayoutComponent implements OnInit {
   formConName: FormGroup;
 
 
-  constructor(public authService: AuthService, public router: Router) {
+  constructor(public authService: AuthService, public router: Router, public reset: ResetService) {
     this.fireUser = firebase.auth().currentUser;
   }
 
@@ -60,6 +64,22 @@ export class LayoutComponent implements OnInit {
     const arrow = document.getElementById('arrow');
     arrow.style.display = 'block';
     menu.classList.remove('extend-menu');
+  }
+
+  resetUsers() {
+    this.reset.resetUsers();
+  }
+
+  resetConPerso() {
+    this.reset.resetConsPerso();
+  }
+
+  resetRemarques() {
+    this.reset.resetRemarques();
+  }
+
+  resetCons() {
+    this.reset.resetCons();
   }
 
 

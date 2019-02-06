@@ -104,7 +104,7 @@ export class AvatarconComponent implements OnInit {
     const avatar = document.getElementsByClassName('lecon');
 
     if ((this.hit - this.heal) >= 5) {
-      avatar.src = "/truc";
+      // avatar.src = "/truc";
     }
   }
 }

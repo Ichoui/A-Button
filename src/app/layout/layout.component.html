@@ -25,6 +25,13 @@
   <span class="icon-logout" (click)="logout()" title="Se déconnecter"></span>
 </div>
 
+<div class="admin" *ngIf="user.displayName === 'Morgan N' && devMode">
+  Console Admin Morgan
+  <button (click)="resetUsers()">Reset users</button><br>
+  <button (click)="resetConPerso()">Reset con perso</button>
+
+</div>
+
 
 <div class="footer">
   <app-buttons [(switch)]="switch"></app-buttons>
