@@ -9,24 +9,7 @@
 
 <app-avatarcon></app-avatarcon>
 
-<div id="arrow" class="arrow-pannel-show" (click)="extendMenu()" title="Ouvrir le menu">
-  <span class="icon-left-arrow"></span>
-</div>
-<div id="menu">
-  <img *ngIf="user" src="{{ user.photoURL }}" alt="">
-  <form [formGroup]="formConName" (ngSubmit)="onSubmit()">
-    <span class="icon-close" (click)="closeMenu()" title="Fermer le menu"></span>
-    <span class="input-qui-dechire">
-      <input id="conName" class="slide-up" type="text" formControlName="conName" placeholder="Nom de mon Con"/>
-      <label for="conName">Mon Con</label>
-    </span>
-    <button class="bouton-qui-se-pousse-quand-tu-lui-demande" type="submit">OK</button>
-  </form>
-  <span class="icon-logout" (click)="logout()" title="Se déconnecter"></span>
-  <div>
-    <b>Hit</b>: {{ hit }} / <b>Heal</b>: {{ heal }}
-  </div>
-</div>
+<app-menu></app-menu>
 
 <div class="admin" *ngIf="devMode">
   Console Admin Morgan
@@ -34,7 +17,6 @@
   <br>
   <button (click)="resetConPerso()">Reset con perso</button>
 </div>
-
 
 <div class="footer">
   <app-buttons [(switch)]="switch"></app-buttons>

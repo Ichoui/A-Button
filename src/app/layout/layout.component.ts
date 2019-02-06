@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../user/providers/auth.service';
-import {User} from '../user/providers/user';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../user/providers/auth.service';
+import { User } from '../user/providers/user';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase';
-import {FormControl, FormGroup} from '@angular/forms';
-import {ResetService} from '../providers/reset.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ResetService } from '../providers/reset.service';
 import { NocifsService } from '../providers/nocifs.service';
 
 @Component({
@@ -22,53 +22,18 @@ export class LayoutComponent implements OnInit {
   switch: boolean = true;
   user: User;
   fireUser;
-  formConName: FormGroup;
-  hit;
-  heal;
 
 
-  constructor(public authService: AuthService, public router: Router, public reset: ResetService, public nocifService: NocifsService) {
+  constructor(public reset: ResetService) {
     this.fireUser = firebase.auth().currentUser;
-    this.nocifService.getAvatar().subscribe(i => {
-      this.hit = i.hitNumber;
-      this.heal = i.healNumber;
-    });
   }
 
   ngOnInit() {
-    this.authService.user$.subscribe(user => this.user = user);
-    this.formConName = new FormGroup({
-      conName: new FormControl()
-    });
-
   }
-
-  updateConName(data) {
-    this.authService.updateConUser(this.fireUser, data);
-  }
-
-  onSubmit() {
-    this.updateConName(this.formConName.value.conName);
-  }
-
 
   emitter($event) {
     this.switch = $event;
     // console.log(this.switch);
-  }
-
-  extendMenu() {
-    const menu = document.getElementById('menu');
-    const arrow = document.getElementById('arrow');
-    arrow.style.display = 'none';
-    menu.classList.add('extend-menu');
-  }
-
-  closeMenu() {
-    const menu = document.getElementById('menu');
-    const arrow = document.getElementById('arrow');
-    arrow.style.display = 'block';
-    menu.classList.remove('extend-menu');
   }
 
   resetUsers() {
@@ -87,10 +52,5 @@ export class LayoutComponent implements OnInit {
     this.reset.resetCons();
   }
 
-
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
-  }
 
 }

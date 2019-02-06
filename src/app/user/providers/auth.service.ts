@@ -70,6 +70,7 @@ export class AuthService implements OnInit {
           email: user.email,
           displayName: user.displayName,
           photoURL: user.photoURL,
+          avatarCon: 'avatar_con',
           number: 0,
           day: 0,
           month: 0,

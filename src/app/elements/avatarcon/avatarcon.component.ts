@@ -1,6 +1,7 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import * as firebase from 'firebase';
 import {NocifsService} from '../../providers/nocifs.service';
+import { AuthService } from '../../user/providers/auth.service';
 
 @Component({
   selector: 'app-avatarcon',
@@ -15,16 +16,18 @@ import {NocifsService} from '../../providers/nocifs.service';
 export class AvatarconComponent implements OnInit {
 
   fireUser;
+  user;
   db = firebase.firestore();
   docRef;
   hit = 0;
   heal = 0;
 
-  constructor(public nocifService: NocifsService) {
+  constructor(public nocifService: NocifsService, public authService: AuthService) {
     this.nocifService.getAvatar().subscribe(i => {
       this.hit = i.hitNumber;
       this.heal = i.healNumber;
     });
+    this.authService.user$.subscribe(user => this.user = user);
     this.fireUser = firebase.auth().currentUser;
     this.docRef = this.db.collection('avatarCons').doc(this.fireUser.displayName);
   }

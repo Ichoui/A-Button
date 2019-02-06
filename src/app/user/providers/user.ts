@@ -4,12 +4,10 @@ export interface  User {
   displayName: string;
   photoURL: string;
   conName?: string;
+  avatarCon?: string;
   number?:number;
   day?: number;
   month?: number;
   year?: number;
-}
 
-export interface Con {
-  conName
 }

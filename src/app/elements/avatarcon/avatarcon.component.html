@@ -1,5 +1,5 @@
 <div class="container-avatar">
-  <img id="avatar-con" src="/assets/images/avatar_con.svg" class="lecon" width="250px" alt="">
+  <img *ngIf="user" id="avatar-con" src="/assets/images/{{ user.avatarCon }}.svg" class="lecon" width="250px" alt="">
   <span id="heart-1" class="icon-heal-con"></span>
   <span id="heart-2" class="icon-heal-con"></span>
   <span id="heart-3" class="icon-heal-con"></span>
