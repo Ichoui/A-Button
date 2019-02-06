@@ -108,5 +108,4 @@ export class NocifsService {
     this.countCollec = this.db.collection('avatarCons').doc(this.fireUser.displayName);
     return this.conAvatar$ = this.countCollec.valueChanges();
   }
-
 }

@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import * as firebase from 'firebase';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ResetService} from '../providers/reset.service';
+import { NocifsService } from '../providers/nocifs.service';
 
 @Component({
   selector: 'app-layout',
@@ -22,16 +23,20 @@ export class LayoutComponent implements OnInit {
   user: User;
   fireUser;
   formConName: FormGroup;
+  hit;
+  heal;
 
 
-  constructor(public authService: AuthService, public router: Router, public reset: ResetService) {
+  constructor(public authService: AuthService, public router: Router, public reset: ResetService, public nocifService: NocifsService) {
     this.fireUser = firebase.auth().currentUser;
+    this.nocifService.getAvatar().subscribe(i => {
+      this.hit = i.hitNumber;
+      this.heal = i.healNumber;
+    });
   }
 
   ngOnInit() {
     this.authService.user$.subscribe(user => this.user = user);
-    // console.log(this.switch);
-    const data = 'Moustache';
     this.formConName = new FormGroup({
       conName: new FormControl()
     });

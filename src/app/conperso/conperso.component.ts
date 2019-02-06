@@ -84,8 +84,8 @@ export class ConpersoComponent implements OnInit {
 
     // Ajoute les data tracks de manière instanciée pour l'utilisateur connecté seulement
     this.db.collection('dataRemarquesCons').add({
-      id_user: this.fireUser.displayName,
       number: addOne,
+      id_user: this.fireUser.displayName,
       date: this.datesService.getDate(),
       dateLisible: this.datesService.dateLisible(),
       day: this.datesService.dayDate(),
@@ -96,6 +96,7 @@ export class ConpersoComponent implements OnInit {
     // Ajouter dans les data tracks
     this.db.collection('dataRemarques').add({
       number: addOne,
+      id_user: this.fireUser.displayName,
       date: this.datesService.getDate(),
       dateLisible: this.datesService.dateLisible(),
       day: this.datesService.dayDate(),

@@ -16,14 +16,8 @@ import * as firebase from 'firebase';
 
 export class ConsComponent implements OnInit {
 
-  // TODO : rajouter id ou displayname dans chaque logs, au cas où un relou foute le souk
-  // TODO : rajouter id ou displayname dans chaque logs, au cas où un relou foute le souk
-  // TODO : rajouter id ou displayname dans chaque logs, au cas où un relou foute le souk
-  // TODO : rajouter id ou displayname dans chaque logs, au cas où un relou foute le souk
-  // TODO : rajouter id ou displayname dans chaque logs, au cas où un relou foute le souk
-  // TODO : rajouter id ou displayname dans chaque logs, au cas où un relou foute le souk
-
   incrementer;
+  fireUser;
   docRef = this.db.collection('cons').doc('actualCons');
   docCountDay = this.db.collection('counters').doc('consDay');
   docCountMonth = this.db.collection('counters').doc('consMonth');
@@ -50,6 +44,7 @@ export class ConsComponent implements OnInit {
     this.nocifsService.getConsYear().subscribe(i => {
       this.consYear = i.consYear;
     });
+    this.fireUser = firebase.auth().currentUser;
   }
 
   ngOnInit() {
@@ -82,6 +77,7 @@ export class ConsComponent implements OnInit {
     // Ajouter dans les data tracks
     this.db.collection('dataCons').add({
       number: addOne,
+      id_user: this.fireUser.displayName,
       date: this.datesService.getDate(),
       dateLisible: this.datesService.dateLisible(),
       day: this.datesService.dayDate(),
@@ -111,8 +107,11 @@ export class ConsComponent implements OnInit {
     }
     const db = firebase.firestore();
     const docRef = db.collection('dataCons');
-    console.log(removeOne);
-    docRef.where('number', '==', removeOne + 1).limit(1).get().then(querySnap => {
+    docRef
+      .where('number', '==', removeOne + 1)
+      .limit(1)
+      .get()
+      .then(querySnap => {
       querySnap.forEach(e => {
         docRef.doc(e.id).delete().then();
         // update les compteurs visuellement

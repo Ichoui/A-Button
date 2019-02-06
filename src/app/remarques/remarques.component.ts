@@ -18,6 +18,7 @@ import * as firebase from 'firebase';
 export class RemarquesComponent implements OnInit {
 
   incrementer;
+  fireUser;
   docRef = this.db.collection('remarques').doc('actualRemarques');
   docCountDay = this.db.collection('counters').doc('remarquesDay');
   docCountMonth = this.db.collection('counters').doc('remarquesMonth');
@@ -44,6 +45,7 @@ export class RemarquesComponent implements OnInit {
     this.nocifsService.getRemarkYear().subscribe(i => {
       this.remarkYear = i.remarkYear;
     });
+    this.fireUser = firebase.auth().currentUser;
   }
 
   ngOnInit() {
@@ -76,6 +78,7 @@ export class RemarquesComponent implements OnInit {
     // Ajouter dans les data tracks
     this.db.collection('dataRemarques').add({
       number: addOne,
+      id_user: this.fireUser.displayName,
       date: this.datesService.getDate(),
       dateLisible: this.datesService.dateLisible(),
       day: this.datesService.dayDate(),
@@ -103,8 +106,8 @@ export class RemarquesComponent implements OnInit {
     }
     const db = firebase.firestore();
     const docRef = db.collection('dataRemarques');
-    console.log(removeOne);
-    docRef.where('number', '==', removeOne + 1)
+    docRef
+      .where('number', '==', removeOne + 1)
       .limit(1)
       .get()
       .then(querySnap => {

@@ -23,13 +23,16 @@
     <button class="bouton-qui-se-pousse-quand-tu-lui-demande" type="submit">OK</button>
   </form>
   <span class="icon-logout" (click)="logout()" title="Se déconnecter"></span>
+  <div>
+    <b>Hit</b>: {{ hit }} / <b>Heal</b>: {{ heal }}
+  </div>
 </div>
 
-<div class="admin" *ngIf="user.displayName === 'Morgan N' && devMode">
+<div class="admin" *ngIf="devMode">
   Console Admin Morgan
-  <button (click)="resetUsers()">Reset users</button><br>
+  <button (click)="resetUsers()">Reset users</button>
+  <br>
   <button (click)="resetConPerso()">Reset con perso</button>
-
 </div>
 
 

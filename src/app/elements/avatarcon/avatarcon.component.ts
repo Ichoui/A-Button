@@ -21,10 +21,10 @@ export class AvatarconComponent implements OnInit {
   heal = 0;
 
   constructor(public nocifService: NocifsService) {
-        this.nocifService.getAvatar().subscribe(i => {
-          this.hit = i.hitNumber;
-          this.heal = i.healNumber;
-        });
+    this.nocifService.getAvatar().subscribe(i => {
+      this.hit = i.hitNumber;
+      this.heal = i.healNumber;
+    });
     this.fireUser = firebase.auth().currentUser;
     this.docRef = this.db.collection('avatarCons').doc(this.fireUser.displayName);
   }
