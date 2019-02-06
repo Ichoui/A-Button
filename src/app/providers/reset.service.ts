@@ -10,7 +10,7 @@ export class ResetService {
   fireUser;
   db = firebase.firestore();
 
-  constructor(public db: AngularFirestore) {
+  constructor() {
     this.fireUser = firebase.auth().currentUser;
   }
 
@@ -40,7 +40,7 @@ export class ResetService {
     const docRefCounters = this.db.collection('counters');
     docRef.get().then(querySnapshot => {
       // docRef.doc(querySnapshot.id).delete().then();
-      console.log(querySnapshot.id);
+      console.log(querySnapshot);
     });
 
     docRef.doc('remarquesDay').update({
@@ -60,7 +60,7 @@ export class ResetService {
     const docRefCounters = this.db.collection('counters');
     docRef.get().then(querySnapshot => {
       // docRef.doc(querySnapshot.id).delete().then();
-      console.log(querySnapshot.id);
+      console.log(querySnapshot);
     });
 
     docRef.doc('consDay').update({

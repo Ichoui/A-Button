@@ -16,6 +16,13 @@ import * as firebase from 'firebase';
 
 export class ConsComponent implements OnInit {
 
+  // TODO : rajouter id ou displayname dans chaque logs, au cas où un relou foute le souk
+  // TODO : rajouter id ou displayname dans chaque logs, au cas où un relou foute le souk
+  // TODO : rajouter id ou displayname dans chaque logs, au cas où un relou foute le souk
+  // TODO : rajouter id ou displayname dans chaque logs, au cas où un relou foute le souk
+  // TODO : rajouter id ou displayname dans chaque logs, au cas où un relou foute le souk
+  // TODO : rajouter id ou displayname dans chaque logs, au cas où un relou foute le souk
+
   incrementer;
   docRef = this.db.collection('cons').doc('actualCons');
   docCountDay = this.db.collection('counters').doc('consDay');
