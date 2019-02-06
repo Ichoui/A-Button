@@ -1,0 +1,206 @@
+@import "../../../scss/stylefullpage";
+
+.arrow-pannel-show {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  font-size: 2em;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#menu {
+  position: absolute;
+  width: 250px;
+  top: 50%;
+  right: 0;
+  transform: translate(500px);
+  transition: all .5s;
+  visibility: hidden;
+
+  .icon-close {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    color: $brand-secondary;
+
+    &:hover {
+      cursor: pointer;
+      color: darken($brand-secondary, 15%);
+    }
+  }
+
+  img {
+    display: flex;
+    margin: 0 auto;
+    width: 50px;
+    border-radius: 50%;
+  }
+
+  .icon-logout {
+    color: $brand-secondary;
+    font-size: 1.6em;
+
+    &:hover {
+      cursor: pointer;
+      color: darken($brand-secondary, 15%);
+    }
+  }
+}
+
+#menu.extend-menu {
+  transform: translateX(-5px);
+  right: 0 !important;
+  visibility: visible;
+  z-index: 999;
+}
+
+.bouton-qui-se-pousse-quand-tu-lui-demande {
+  border-width: 0;
+  padding: 0;
+  top: 40px;
+  right: 0;
+  width: 50px;
+  font-size: 15px;
+  height: 30px;
+  line-height: 30px;
+
+  display: block;
+  position: absolute;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: $brand-secondary;
+  border-radius: 4px;
+  box-shadow: 0 4px 0 darken($brand-secondary, 20%), 0 5px 5px 1px rgba(0, 0, 0, 0.4);
+  transition: all 0.15s ease-in-out;
+
+}
+
+.bouton-qui-se-pousse-quand-tu-lui-demande:hover {
+  background-color: $brand-secondary;
+  box-shadow: 0 4px 0 darken($brand-secondary, 20%), 0 5px 5px 1px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+.bouton-qui-se-pousse-quand-tu-lui-demande:active {
+  margin-top: -18px;
+  box-shadow: none;
+}
+
+.input-qui-dechire {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+
+  .slide-up {
+    display: inline-block;
+    width: 215px;
+    height: 16px;
+    padding: 10px 0 10px 15px;
+    font-weight: 400;
+    color: $black-color;
+    background: $brand-primary;
+    border: 0;
+    border-radius: 3px;
+    outline: 0;
+    text-indent: 80px; // Arbitrary.
+    transition: all .3s ease-in-out;
+
+    &::-webkit-input-placeholder {
+      color: $brand-primary;
+      text-indent: 0;
+      font-weight: 300;
+    }
+
+    + label {
+      display: inline-block;
+      position: absolute;
+      transform: translateX(0);
+      top: 0;
+      left: 0;
+      height: 16px;
+      padding: 10px 15px;
+      text-shadow: 0 1px 0 rgba(19, 74, 70, .4);
+      transition: all .3s ease-in-out;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      overflow: hidden;
+      color: $white-color;
+
+      &:before,
+      &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        left: 0;
+        z-index: -1;
+        transition: all .3s ease-in-out;
+      }
+
+      &:before {
+        // Skinny bit here
+        top: 6px;
+        left: 5px;
+        right: 5px;
+        bottom: 6px;
+        background: $brand-secondary; // change this to #134A46
+      }
+
+      &:after {
+        top: 0;
+        bottom: 0;
+        background: $brand-secondary;
+      }
+    }
+  }
+
+  span:nth-child(1) .slide-up {
+    text-indent: 105px;
+  }
+
+  span:nth-child(1) .slide-up:focus {
+    text-indent: 0;
+  }
+
+  .slide-up:focus,
+  .slide-up:active {
+    color: black;
+    text-indent: 0;
+    background: $brand-primary;
+
+    &::-webkit-input-placeholder {
+      color: #aaa;
+    }
+
+    + label {
+      transform: translateY(-100%);
+
+      &:before {
+        border-radius: 5px;
+      }
+
+      &:after {
+        transform: translateY(100%);
+      }
+    }
+  }
+}
+
+
+.chose-your-avatar-my-friend {
+  ul {
+    display: flex;
+
+    li {
+      img {
+        width: 50px;
+        &:hover {
+          cursor:pointer;
+        }
+      }
+    }
+  }
+}
