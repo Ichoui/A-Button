@@ -6,34 +6,55 @@
   width: 100%;
   min-height: 70px;
   margin-top: 25px;
+  @include breakpoint(smartphone) {
+    flex-direction: column;
+    margin-top: 5px;
+    min-height: unset;
+  }
 
   app-conperso, app-remarques, app-cons {
     width: 40%;
     height: 100%;
     border-bottom: 2px solid $brand-secondary;
+    @include breakpoint(smartphone) {
+      border-bottom: unset;
+      width: 100%;
+    }
   }
 
   app-switch {
     height: 100%;
     width: 20%;
+    @include breakpoint(smartphone) {
+      width: 100%;
+
+    }
   }
 
   // margins
   app-conperso, app-remarques {
     margin-left: 5rem;
+    @include breakpoint(smartphone) {
+      margin-left: 0;
+      border-top: 2px solid $brand-secondary;
+
+    }
   }
   app-cons {
     margin-right: 5rem;
+    @include breakpoint(smartphone) {
+      margin-right: 0;
+      border-bottom: 2px solid $brand-secondary;
+    }
   }
 }
 
 app-avatarcon {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 45%
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 45%
 }
-
 
 .footer {
   position: fixed;
@@ -78,6 +99,14 @@ app-avatarcon {
   .wave-right {
     border-radius: 0% 100% 100% 0% / 0% 65% 0% 100%;
     right: 0;
+  }
+  @include breakpoint(smartphone) {
+    position: absolute;
+    .texts {
+      font-size: 0.8em;
+      bottom: 2px;
+      width: 100%;
+    }
   }
 
 }

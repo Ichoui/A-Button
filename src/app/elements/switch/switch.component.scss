@@ -4,6 +4,9 @@
   text-align: center;
   .switch {
     margin-top: 15px;
+    @include breakpoint(smartphone) {
+      margin-top: 5px;
+    }
     .icon-switch {
       background: $brand-secondary;
       border-radius: 50%;
@@ -20,8 +23,14 @@
     color: $brand-secondary;
     font-weight: bold;
     margin-top: 30px;
-    span {
+    div {
       font-size: 1.2em;
+    }
+    @include breakpoint(smartphone) {
+      margin-top: 5px;
+      div {
+        display: contents;
+      }
     }
   }
 }

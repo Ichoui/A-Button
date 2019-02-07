@@ -30,14 +30,14 @@
 
 .conperso, .remarques {
   justify-content: flex-end;
-  div:first-child {
-    //margin-left: .3rem;
+  @include breakpoint(smartphone) {
+    justify-content: center;
   }
 }
 
 .cons {
   justify-content: flex-start;
-  div:last-child {
-    //margin-right: .3rem;
+  @include breakpoint(smartphone) {
+    justify-content: center;
   }
 }

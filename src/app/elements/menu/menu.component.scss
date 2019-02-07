@@ -24,8 +24,8 @@
     position: absolute;
     right: 3px;
     top: 3px;
+    font-size: 1.6em;
     color: $brand-secondary;
-
     &:hover {
       cursor: pointer;
       color: darken($brand-secondary, 15%);
@@ -40,9 +40,11 @@
   }
 
   .icon-logout {
-    color: $brand-secondary;
+    position: absolute;
+    left: 3px;
+    top: 3px;
     font-size: 1.6em;
-
+    color: $brand-secondary;
     &:hover {
       cursor: pointer;
       color: darken($brand-secondary, 15%);
@@ -55,6 +57,15 @@
   right: 0 !important;
   visibility: visible;
   z-index: 999;
+  @include breakpoint(smartphone) {
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    background: white;
+    border: 5px solid $brand-secondary;
+    text-align: center;
+  }
 }
 
 .bouton-qui-se-pousse-quand-tu-lui-demande {
@@ -193,7 +204,6 @@
 .chose-your-avatar-my-friend {
   ul {
     display: flex;
-
     li {
       img {
         width: 50px;
@@ -201,6 +211,11 @@
           cursor:pointer;
         }
       }
+    }
+  }
+  @include breakpoint(smartphone) {
+    ul {
+      justify-content: center;
     }
   }
 }

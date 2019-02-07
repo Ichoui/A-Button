@@ -9,6 +9,13 @@
   left: 50%;
 }
 
+.lecon {
+  width: 250px;
+  @include breakpoint(smartphone) {
+    width: 150px;
+  }
+}
+
 // KEYFRAMES
 @keyframes shake {
   from, to {
@@ -123,3 +130,5 @@
   animation-fill-mode: both;
   animation-name: shake;
 }
+
+
