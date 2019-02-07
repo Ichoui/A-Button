@@ -30,9 +30,10 @@
     }
   }
 
+  // Généralités sur les boutons
   .button {
+    position: relative;
     color: $white-color;
-    padding: 14px;
     border-radius: 50%;
     @include breakpoint(smartphone) {
       padding: 8px;
@@ -40,35 +41,67 @@
     &:hover {
       cursor: pointer;
     }
-  }
-
-  .except {
-    padding: 6px;
-    @include breakpoint(smartphone) {
-      padding: 4px;
-    }
-  }
-  .normalb {
     span {
-      font-size: 1.7em;
-      @include breakpoint(smartphone) {
-        font-size: 1.4em;
+      &:before {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
       }
     }
   }
+
+  // Bouton heartbreak (car path css)
+  .except {
+    span:first-child {
+      &:before {
+        display: none;
+      }
+    }
+  }
+  // Boutons du haut
+  .normalb {
+    width: 48px;
+    height: 48px;
+    span {
+      font-size: 1.7em;
+    }
+    @include breakpoint(smartphone) {
+      width: 30px;
+      height: 30px;
+      span {
+        font-size: 1.4em;
+      }
+    }
+
+  }
+  // Big bouton (hit)
   .bigb {
+    width: 72px;
+    height: 72px;
     span {
       font-size: 3.3em;
-      @include breakpoint(smartphone) {
+    }
+    @include breakpoint(smartphone) {
+      width: 50px;
+      height: 50px;
+      span {
         font-size: 2.5em;
       }
     }
   }
+  // Boutons du bas
   .bottom {
+    width: 36px;
+    height: 36px;
     margin-top: 10px;
     span {
-      font-size: 1.2em;
-      @include breakpoint(smartphone) {
+      font-size: 1.1em;
+    }
+    @include breakpoint(smartphone) {
+      width: 18px;
+      height: 18px;
+      span {
         font-size: 1em;
       }
     }

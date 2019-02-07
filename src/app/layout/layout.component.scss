@@ -8,7 +8,7 @@
   margin-top: 25px;
   @include breakpoint(smartphone) {
     flex-direction: column;
-    margin-top: 5px;
+    margin-top: 0;
     min-height: unset;
   }
 
