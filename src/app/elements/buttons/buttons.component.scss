@@ -31,34 +31,46 @@
   }
 
   .button {
-    color: white;
+    color: $white-color;
     padding: 14px;
     border-radius: 50%;
+    @include breakpoint(smartphone) {
+      padding: 8px;
+    }
     &:hover {
       cursor: pointer;
     }
   }
 
   .except {
-    span {
-      //font-size: 1.3em;
-      font-size: 1.7em;
+    padding: 6px;
+    @include breakpoint(smartphone) {
+      padding: 4px;
     }
   }
   .normalb {
     span {
       font-size: 1.7em;
+      @include breakpoint(smartphone) {
+        font-size: 1.4em;
+      }
     }
   }
   .bigb {
     span {
-      font-size: 3.2em;
+      font-size: 3.3em;
+      @include breakpoint(smartphone) {
+        font-size: 2.5em;
+      }
     }
   }
   .bottom {
     margin-top: 10px;
     span {
       font-size: 1.2em;
+      @include breakpoint(smartphone) {
+        font-size: 1em;
+      }
     }
   }
 }
