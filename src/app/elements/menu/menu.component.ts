@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { AuthService } from '../../user/providers/auth.service';
-import { NocifsService } from '../../providers/nocifs.service';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {AuthService} from '../../user/providers/auth.service';
+import {NocifsService} from '../../providers/nocifs.service';
 import * as firebase from 'firebase';
-import { Router } from '@angular/router';
-import { AngularFirestore } from 'angularfire2/firestore';
+import {Router} from '@angular/router';
+import {AngularFirestore} from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-menu',
@@ -19,7 +19,9 @@ export class MenuComponent implements OnInit {
   hit;
   heal;
   avatars;
-  suffix = 'assets/images/';
+  backgroudAvatar;
+
+
   constructor(public authService: AuthService, public nocifService: NocifsService, public router: Router, public db: AngularFirestore) {
     this.nocifService.getAvatar().subscribe(i => {
       this.hit = i.hitNumber;
@@ -28,9 +30,11 @@ export class MenuComponent implements OnInit {
     this.formConName = new FormGroup({
       conName: new FormControl()
     });
-    this.authService.user$.subscribe(user => this.user = user);
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+      this.backgroudAvatar = user.avatarCon;
+    });
     this.fireUser = firebase.auth().currentUser;
-
   }
 
   ngOnInit() {
@@ -69,15 +73,12 @@ export class MenuComponent implements OnInit {
   }
 
   chosingAvatar(e) {
-    console.log(e);
     const fullPathImg = e.target.attributes[3].value;
     const correctImgWithExtension = fullPathImg.split('/');
     const correctImg = correctImgWithExtension[2].split('.')[0];
     const docRef = this.db.collection('users').doc(this.fireUser.displayName);
     docRef.update({
-       avatarCon: correctImg
-    })
-  }
-
-
+      avatarCon: correctImg
+    });
+    }
 }

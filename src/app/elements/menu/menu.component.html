@@ -2,7 +2,7 @@
   <span class="icon-left-arrow"></span>
 </div>
 <div id="menu">
-  <img *ngIf="user" src="{{ user.photoURL }}" alt="">
+  <img *ngIf="user" src="{{ user.photoURL }}" class="avatar-google">
   <form [formGroup]="formConName" (ngSubmit)="onSubmit()">
     <span class="icon-close" (click)="closeMenu()" title="Fermer le menu"></span>
     <span class="input-qui-dechire">
@@ -12,14 +12,17 @@
     </span>
   </form>
   <span class="icon-logout" (click)="logout()" title="Se déconnecter"></span>
-  <div>
-    <b>Hit</b>: {{ hit }} /<b>Heal</b>: {{ heal }}
+  <div class="balance-hit-heal">
+    <b>Hit</b>: {{ hit }} / <b>Heal</b>: {{ heal }}
   </div>
   <div class="chose-your-avatar-my-friend">
-    <p>Choisi ton avatar !</p>
-    <ul *ngIf="avatars">
+    <ul >
       <li *ngFor="let avatar of avatars; let i = index">
-        <img id="avatar-{{ i + 1 }}" class="avatar-to-choose" src="assets/images/{{avatar}}.svg" (click)="chosingAvatar($event)">
+        <img id="{{ avatar }}"
+             class="avatar-to-choose" src="assets/images/{{avatar}}.svg"
+             (click)="chosingAvatar($event)"
+             [class.active]="avatar === backgroudAvatar"
+        >
       </li>
     </ul>
   </div>

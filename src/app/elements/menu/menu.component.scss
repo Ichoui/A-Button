@@ -32,7 +32,7 @@
     }
   }
 
-  img {
+  img.avatar-google {
     display: flex;
     margin: 0 auto;
     width: 50px;
@@ -59,7 +59,7 @@
   //display: unset;
   z-index: 999;
   @include breakpoint(smartphone) {
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
     width: 100%;
@@ -201,16 +201,20 @@
   }
 }
 
-
 .chose-your-avatar-my-friend {
   ul {
     display: flex;
     li {
       img {
         width: 50px;
+        height: 100%;
         &:hover {
-          cursor:pointer;
+          cursor: pointer;
         }
+      }
+      img.active {
+        background: rgba($brand-secondary, .3);
+        border-radius: 50%;
       }
     }
   }
