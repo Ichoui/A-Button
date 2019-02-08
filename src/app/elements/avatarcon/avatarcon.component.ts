@@ -1,7 +1,7 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import * as firebase from 'firebase';
 import {NocifsService} from '../../providers/nocifs.service';
-import { AuthService } from '../../user/providers/auth.service';
+import {AuthService} from '../../user/providers/auth.service';
 
 @Component({
   selector: 'app-avatarcon',
@@ -22,17 +22,32 @@ export class AvatarconComponent implements OnInit {
   hit = 0;
   heal = 0;
 
+  date = new Date();
+  resetHour = ['15', '52', '20']; // Hour : format 24 --- Minutes : 1 - 60
+  maxHitBeforeDie = 50;
+  isHeDie = false;
+
+
   constructor(public nocifService: NocifsService, public authService: AuthService) {
-    this.nocifService.getAvatar().subscribe(i => {
-      this.hit = i.hitNumber;
-      this.heal = i.healNumber;
-    });
     this.authService.user$.subscribe(user => this.user = user);
     this.fireUser = firebase.auth().currentUser;
     this.docRef = this.db.collection('avatarCons').doc(this.fireUser.displayName);
+
+    this.nocifService.getAvatar().subscribe(i => {
+      this.hit = i.hitNumber;
+      this.heal = i.healNumber;
+
+      if (this.hit > this.maxHitBeforeDie - 1) {
+        this.resetMyConToZeroBecauseHeIsDie();
+        this.isHeDie = true;
+      } else {
+        this.isHeDie = false;
+      }
+    });
   }
 
   ngOnInit() {
+
   }
 
   hitMyCon() {
@@ -42,7 +57,9 @@ export class AvatarconComponent implements OnInit {
       avatar.classList.remove('shake');
     }, 1000);
     this.incrementHits();
-    this.isHeDie();
+    this.bePwned();
+
+
 
   }
 
@@ -75,12 +92,14 @@ export class AvatarconComponent implements OnInit {
     return this.docRef.get().then(snapshotDocument => {
       if (snapshotDocument.exists) {
         return this.docRef.update({
-          hitNumber: this.hit
+          hitNumber: this.hit,
+          deathDate: null
         });
       } else {
         return this.docRef.set({
           hitNumber: 1,
-          healNumber: 0
+          healNumber: 0,
+          deathDate: null
         });
       }
     });
@@ -91,23 +110,47 @@ export class AvatarconComponent implements OnInit {
 
     return this.docRef.get().then(snapshotDocument => {
       if (snapshotDocument.exists) {
-       return this.docRef.update({
-          healNumber: this.heal
+        return this.docRef.update({
+          healNumber: this.heal,
+          deathDate: null
         });
       } else {
         return this.docRef.set({
           hitNumber: 0,
-          healNumber: 1
+          healNumber: 1,
+          deathDate: null
         });
       }
     });
   }
 
-  isHeDie() {
+  bePwned() {
     const avatar = document.getElementsByClassName('lecon');
-
+// TODO : Evolution de l'avatar en fonction du nombre de hits (à définir)
     if ((this.hit - this.heal) >= 5) {
       // avatar.src = "/truc";
     }
+    if (this.hit >= this.maxHitBeforeDie) {
+      // On met l'avatar du mort
+    }
+  }
+
+  resetMyConToZeroBecauseHeIsDie() {
+    // TODO : Si il est mort, on joue avec un boolean qui passe  TRUE et qui empêche de sélectionner un nouveau con,
+    // TODO : et on grise le HIT & HEAL, et on change la gueule de l'avatar
+
+    this.docRef.update({
+      hitNumber: 0,
+      healNumber: 0,
+      deathDate: this.date
+    });
+
+
+    // Ici : récupérer la date de mort et si à l'acutialisation, on est le - jour +1 à 00:00:00 -
+    // ---> On permet à isHeDie de repasser à false et de ré-autoriser les clics
+
+    this.docRef.get().then(e => {
+      console.log(e.data().deathDate);
+    });
   }
 }
