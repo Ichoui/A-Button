@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ResetService } from '../providers/reset.service';
 import { NocifsService } from '../providers/nocifs.service';
+import { $e } from 'codelyzer/angular/styles/chars';
 
 @Component({
   selector: 'app-layout',
@@ -20,6 +21,7 @@ export class LayoutComponent implements OnInit {
 
   // Provient du component Switch
   switch: boolean = true;
+  isHeDie: boolean = false;
   user: User;
   fireUser;
 
@@ -31,9 +33,13 @@ export class LayoutComponent implements OnInit {
   ngOnInit() {
   }
 
+  isHeDieEmitter($event) {
+    this.isHeDie = $event;
+  }
+
   emitter($event) {
     this.switch = $event;
-    // console.log(this.switch);
+    // console.log(thixs.switch);
   }
 
   resetUsers() {

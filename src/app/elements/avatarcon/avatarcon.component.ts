@@ -1,4 +1,4 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import * as firebase from 'firebase';
 import { NocifsService } from '../../providers/nocifs.service';
 import { AuthService } from '../../user/providers/auth.service';
@@ -24,8 +24,9 @@ export class AvatarconComponent implements OnInit {
 
   date = new Date();
   maxHitBeforeDie = 50;
-  isHeDie = false;
 
+  @Input() isHeDie = false;
+  @Output() isHeDieEmit = new EventEmitter();
 
   constructor(public nocifService: NocifsService, public authService: AuthService) {
     this.authService.user$.subscribe(user => this.user = user);
@@ -40,14 +41,11 @@ export class AvatarconComponent implements OnInit {
       } else {
         this.isDateNotNull();
       }
-      console.log(this.isHeDie);
     });
 
   }
 
-  ngOnInit() {
-// this.resetMyConToZeroBecauseHeIsDie();
-  }
+  ngOnInit() {}
 
   hitMyCon() {
     const avatar = document.getElementById('avatar-con');
@@ -156,17 +154,19 @@ export class AvatarconComponent implements OnInit {
         const deathhDay = deathDate.getDate();
         const actualDay = this.date.getDate();
         const hit = e.data().hitNumber;
+        this.isHeDieEmit.emit(this.isHeDie = true);
 
         // L'utilisateur a tué son con. Disparition des boutons de hit/heal, modification de l'avatar
-        avatar.style.display = 'none';
-        btnHit.classList.add('unavailable');
-        btnHeal.classList.add('unavailable');
+        // avatar.style.display = 'none';
+        // btnHit.classList.add('unavailable');
+        // btnHeal.classList.add('unavailable');
 
         if (actualDay > deathhDay && hit === 0) {
           // RESET du J+1 -> On met à jour en ré autorisant les boutons & remettant l'avatar de base
-          avatar.style.display = 'block';
-          btnHit.classList.remove('unavailable');
-          btnHeal.classList.remove('unavailable');
+          this.isHeDieEmit.emit(this.isHeDie = false);
+          // avatar.style.display = 'block';
+          // btnHit.classList.remove('unavailable');
+          // btnHeal.classList.remove('unavailable');
         }
       }
     });

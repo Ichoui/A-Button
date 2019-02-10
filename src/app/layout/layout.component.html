@@ -7,7 +7,7 @@
   <app-cons></app-cons>
 </div>
 
-<app-avatarcon></app-avatarcon>
+<app-avatarcon (isHeDieEmit)="isHeDieEmitter($event)"></app-avatarcon>
 
 <app-menu></app-menu>
 
@@ -19,7 +19,7 @@
 </div>
 
 <div class="footer">
-  <app-buttons [(switch)]="switch"></app-buttons>
+  <app-buttons [(switch)]="switch" [(isHeDie)]="isHeDie"></app-buttons>
   <div class="texts">
     <h2>Con'teur</h2>
     <p>La vie n'est pas un long fleuve tranquille...</p>

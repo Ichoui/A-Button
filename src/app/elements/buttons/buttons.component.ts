@@ -20,6 +20,7 @@ export class ButtonsComponent implements OnInit {
   }
 
   @Input() switch;
+  @Input() isHeDie;
 
   ngOnInit() {
   }
