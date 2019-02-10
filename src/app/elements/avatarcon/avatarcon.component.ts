@@ -157,12 +157,13 @@ export class AvatarconComponent implements OnInit {
         const actualDay = this.date.getDate();
         const hit = e.data().hitNumber;
 
+        // L'utilisateur a tué son con. Disparition des boutons de hit/heal, modification de l'avatar
         avatar.style.display = 'none';
         btnHit.classList.add('unavailable');
         btnHeal.classList.add('unavailable');
 
         if (actualDay > deathhDay && hit === 0) {
-          // TODO : RESET -> On met à jour en ré autorisant les boutons & remettant l'avatar de base
+          // RESET du J+1 -> On met à jour en ré autorisant les boutons & remettant l'avatar de base
           avatar.style.display = 'block';
           btnHit.classList.remove('unavailable');
           btnHeal.classList.remove('unavailable');
