@@ -15,11 +15,7 @@ export class DatesService {
 
   // Renvoie la date du jour sous format illisible
   getDate() {
-    const d = new Date();
-    const date = d.getDate();
-    const month = d.getMonth() + 1;
-    const year = d.getFullYear();
-    return d;
+    return new Date();
   }
 
   // Renvoie la date du jour sous un array

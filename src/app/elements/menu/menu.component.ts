@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit {
   user;
   hit;
   heal;
-  avatars;
+  avatars = ['lepen', 'macron', 'avatar_con', 'meluche'];
   backgroudAvatar;
 
 
@@ -38,11 +38,6 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.avatarsExisting();
-  }
-
-  avatarsExisting() {
-    this.avatars = ['lepen', 'macron', 'avatar_con', 'meluche'];
   }
 
   updateConName(data) {

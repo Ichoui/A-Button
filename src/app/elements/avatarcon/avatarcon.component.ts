@@ -1,7 +1,7 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
-import {NocifsService} from '../../providers/nocifs.service';
-import {AuthService} from '../../user/providers/auth.service';
+import { NocifsService } from '../../providers/nocifs.service';
+import { AuthService } from '../../user/providers/auth.service';
 
 @Component({
   selector: 'app-avatarcon',
@@ -23,7 +23,6 @@ export class AvatarconComponent implements OnInit {
   heal = 0;
 
   date = new Date();
-  resetHour = ['15', '52', '20']; // Hour : format 24 --- Minutes : 1 - 60
   maxHitBeforeDie = 50;
   isHeDie = false;
 
@@ -32,22 +31,27 @@ export class AvatarconComponent implements OnInit {
     this.authService.user$.subscribe(user => this.user = user);
     this.fireUser = firebase.auth().currentUser;
     this.docRef = this.db.collection('avatarCons').doc(this.fireUser.displayName);
-
     this.nocifService.getAvatar().subscribe(i => {
       this.hit = i.hitNumber;
       this.heal = i.healNumber;
 
+      this.test();
       if (this.hit > this.maxHitBeforeDie - 1) {
+        console.log('on est dedans ou pas');
         this.resetMyConToZeroBecauseHeIsDie();
         this.isHeDie = true;
       } else {
+        this.lookingForDate();
         this.isHeDie = false;
+
       }
+      console.log(this.isHeDie);
     });
+
   }
 
   ngOnInit() {
-
+// this.resetMyConToZeroBecauseHeIsDie();
   }
 
   hitMyCon() {
@@ -58,7 +62,6 @@ export class AvatarconComponent implements OnInit {
     }, 1000);
     this.incrementHits();
     this.bePwned();
-
 
 
   }
@@ -145,12 +148,41 @@ export class AvatarconComponent implements OnInit {
       deathDate: this.date
     });
 
+    const avatar = document.getElementById('avatar-con');
+    // @ts-ignore
+    avatar.style.display = 'none';
 
     // Ici : récupérer la date de mort et si à l'acutialisation, on est le - jour +1 à 00:00:00 -
     // ---> On permet à isHeDie de repasser à false et de ré-autoriser les clics
+  }
+
+  test() {
+    this.docRef.get().then(e => {
+      if (e.data().deathDate !== null) {
+        const avatar = document.getElementById('avatar-con');
+        // @ts-ignore
+        avatar.style.display = 'none';
+      }
+    });
+  }
+
+  lookingForDate() {
+    const avatar = document.getElementById('avatar-con');
 
     this.docRef.get().then(e => {
-      console.log(e.data().deathDate);
+      if (e.data().deathDate !== null) {
+        // On a ici le jour de la date de Décès suivi de la date du jour
+        const deathDate = e.data().deathDate.toDate();
+        const deathhDay = deathDate.getDate();
+        const actualDay = this.date.getDate();
+
+        if (actualDay > deathhDay) {
+          // @ts-ignore
+          avatar.style.display = 'block';
+          console.log('On peut reset');
+        }
+
+      }
     });
   }
 }
