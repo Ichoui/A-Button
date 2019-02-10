@@ -2,7 +2,7 @@
   <span class="icon-left-arrow"></span>
 </div>
 <div id="menu">
-  <img *ngIf="user" src="{{ user.photoURL }}" class="avatar-google">
+  <img *ngIf="user" src="{{ user.photoURL }}" class="avatar-google" alt="Avatar google">
   <form [formGroup]="formConName" (ngSubmit)="onSubmit()">
     <span class="icon-close" (click)="closeMenu()" title="Fermer le menu"></span>
     <span class="input-qui-dechire">

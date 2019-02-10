@@ -1,5 +1,8 @@
 <div class="container-avatar">
-  <img *ngIf="user && isHeDie === false" id="avatar-con" class="lecon" src="/assets/images/{{ user.avatarCon }}.svg" alt="Avatar du con!">
+  <div *ngIf="user">
+    <img *ngIf="isHeDie === false" id="avatar-con" class="lecon" src="/assets/images/{{ user.avatarCon }}.svg" alt="Avatar du con!">
+    <p *ngIf="isHeDie === true">Bravo ! Vous avez tué votre con ...<br>Revenez demain, un con ne part jamais bien loin...</p>
+  </div>
   <span id="heart-1" class="icon-heal-con"></span>
   <span id="heart-2" class="icon-heal-con"></span>
   <span id="heart-3" class="icon-heal-con"></span>
