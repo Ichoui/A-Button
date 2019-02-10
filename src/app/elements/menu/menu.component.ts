@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit {
   user;
   hit;
   heal;
-  avatars = ['lepen', 'macron', 'avatar_con', 'meluche'];
+  avatars = ['lepen', 'macron', 'avatar_con', 'meluche', 'brunel'];
   backgroudAvatar;
 
 

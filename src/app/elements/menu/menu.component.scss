@@ -204,6 +204,7 @@
 .chose-your-avatar-my-friend {
   ul {
     display: flex;
+    flex-wrap: wrap;
     li {
       img {
         width: 50px;
