@@ -35,15 +35,10 @@ export class AvatarconComponent implements OnInit {
       this.hit = i.hitNumber;
       this.heal = i.healNumber;
 
-      this.test();
       if (this.hit > this.maxHitBeforeDie - 1) {
-        console.log('on est dedans ou pas');
         this.resetMyConToZeroBecauseHeIsDie();
-        this.isHeDie = true;
       } else {
-        this.lookingForDate();
-        this.isHeDie = false;
-
+        this.isDateNotNull();
       }
       console.log(this.isHeDie);
     });
@@ -138,50 +133,40 @@ export class AvatarconComponent implements OnInit {
     }
   }
 
+  // On remet les datas à zéro et on ajoute une date de décès
   resetMyConToZeroBecauseHeIsDie() {
-    // TODO : Si il est mort, on joue avec un boolean qui passe  TRUE et qui empêche de sélectionner un nouveau con,
-    // TODO : et on grise le HIT & HEAL, et on change la gueule de l'avatar
-
     this.docRef.update({
       hitNumber: 0,
       healNumber: 0,
       deathDate: this.date
     });
-
-    const avatar = document.getElementById('avatar-con');
-    // @ts-ignore
-    avatar.style.display = 'none';
-
-    // Ici : récupérer la date de mort et si à l'acutialisation, on est le - jour +1 à 00:00:00 -
-    // ---> On permet à isHeDie de repasser à false et de ré-autoriser les clics
   }
 
-  test() {
+  // Si date de décès n'est pas nulle
+  // On modifie l'affichage du con et annule la possibilité d'incrémenter
+  // L'utilisateur doit attendre minuit pour que ce soit remis à zéro (avec refresh page)
+  isDateNotNull() {
     this.docRef.get().then(e => {
       if (e.data().deathDate !== null) {
         const avatar = document.getElementById('avatar-con');
-        // @ts-ignore
-        avatar.style.display = 'none';
-      }
-    });
-  }
-
-  lookingForDate() {
-    const avatar = document.getElementById('avatar-con');
-
-    this.docRef.get().then(e => {
-      if (e.data().deathDate !== null) {
-        // On a ici le jour de la date de Décès suivi de la date du jour
+        const btnHit = document.getElementById('hitmycon');
+        const btnHeal = document.getElementById('healmycon');
+        // jour de la date de Décès --- la date du jour --- le nombre de hit
         const deathDate = e.data().deathDate.toDate();
         const deathhDay = deathDate.getDate();
         const actualDay = this.date.getDate();
+        const hit = e.data().hitNumber;
 
-        if (actualDay > deathhDay) {
-          // @ts-ignore
+        avatar.style.display = 'none';
+        btnHit.classList.add('unavailable');
+        btnHeal.classList.add('unavailable');
+
+        if (actualDay > deathhDay && hit === 0) {
+          // TODO : RESET -> On met à jour en ré autorisant les boutons & remettant l'avatar de base
           avatar.style.display = 'block';
-          console.log('On peut reset');
+          btnHit.classList.remove('unavailable');
+          btnHeal.classList.remove('unavailable');
         }
-
       }
     });
   }

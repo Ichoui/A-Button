@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 140px;
+
   .blocks {
     display: flex;
     flex-direction: column;
@@ -18,12 +19,15 @@
       background-color: $brand-secondary;
     }
   }
+
   .block-hit-my-con {
     margin-bottom: 15px;
+
     .button {
       background-color: $black-color;
     }
   }
+
   .block-cons {
     .button {
       background-color: $brand-button;
@@ -38,9 +42,11 @@
     @include breakpoint(smartphone) {
       padding: 8px;
     }
+
     &:hover {
       cursor: pointer;
     }
+
     span {
       &:before {
         position: absolute;
@@ -59,13 +65,16 @@
       }
     }
   }
+
   // Boutons du haut
   .normalb {
     width: 48px;
     height: 48px;
+
     span {
       font-size: 1.7em;
     }
+
     @include breakpoint(smartphone) {
       width: 30px;
       height: 30px;
@@ -75,13 +84,16 @@
     }
 
   }
+
   // Big bouton (hit)
   .bigb {
     width: 72px;
     height: 72px;
+
     span {
       font-size: 3.3em;
     }
+
     @include breakpoint(smartphone) {
       width: 50px;
       height: 50px;
@@ -90,20 +102,31 @@
       }
     }
   }
+
   // Boutons du bas
   .bottom {
     width: 36px;
     height: 36px;
     margin-top: 10px;
+
     span {
       font-size: 1.1em;
     }
+
     @include breakpoint(smartphone) {
       width: 18px;
       height: 18px;
       span {
         font-size: 1em;
       }
+    }
+  }
+
+  .unavailable {
+    pointer-events: none;
+    background: rgba(15,15,15,0.2) !important;
+    &:hover {
+      cursor: not-allowed !important;
     }
   }
 }
